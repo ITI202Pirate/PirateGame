@@ -1,86 +1,55 @@
 import java.util.Scanner;
 
-public class MainMenu
+public class PortMenu
 {
 
 	public static void main(String[] args) 
 	{
+		int portRead = 0;
 		
-		int tracker = 0;
-		
-		while(tracker != 3)
+		while(portRead != 3)
 		{
-			System.out.println("Welcome to [game name]");
+			System.out.println("Welcome to the port");
 			System.out.println("");
 			System.out.println("-------------------------");
-			System.out.println("[1] - Start Game");
-			System.out.println("[2] - Load Game");
-			System.out.println("[3] - Exit");
+			System.out.println("[1] - Store");
+			System.out.println("[2] - Ship");
+			System.out.println("[3] - Leave Port");
 			System.out.println("-------------------------");
 			System.out.println("");
 			System.out.println("Type in the number for which command you would like to execute");
 			
-			try
+			try 
 			{
-				Scanner mainMenuInput = new Scanner(System.in);
-				int mainMenuRead = mainMenuInput.nextInt();
 			
+				Scanner portInput = new Scanner(System.in);
+				portRead = portInput.nextInt();
 				
-				if(mainMenuRead == 1)
-				{
-					// insert new game 
-					mainMenuRead = -1;
-				}
-			
-				
-				else if (mainMenuRead == 2)
-				{
-					// insert saved game
-					mainMenuRead = -1;
-				}
-			
-				
-				else if (mainMenuRead == 3)
+				switch(portRead)
 				{
 				
-					System.out.println("Are you sure you want to exit? (y/n)");
-					Scanner inputExit = new Scanner(System.in);
-					String exitRead = inputExit.nextLine();
-				
-					if(exitRead.equals("y"))
-					{
-						System.out.println("Thanks for playing!");
-					}
-				
-					else if(exitRead.equals("n"))
-					{
-						mainMenuRead = 100;
-					}
-				
-					else
-					{
-						System.out.println("That is an invalid input.");
-						mainMenuRead = 100;
-					}
+				case 1:
 					
-				}
+				break;
 				
 				
-				else if (mainMenuRead == 100)	
-				{
-					//included so that the "invalid input" message doesn't show
-				}
+				case 2:
+					
+				break;	
 				
 				
-				else
-				{	
+				case 3:
+					System.out.println("Exiting the port.");
+				break;
+				
+				
+				default:
 					System.out.println("That is an invalid input.");
+				break;	
+				
 				}
 				
-				
-				tracker = mainMenuRead;
 			}
-			
 			
 			catch(Exception e)
 			{
@@ -88,7 +57,7 @@ public class MainMenu
 			}
 			
 		}
-		
+
 	}
 
 }
