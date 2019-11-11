@@ -70,44 +70,44 @@ public class PortMenu
 		while(storeRead != 3)
 		{
 			
-		System.out.println("Welcome to store");
-		System.out.println("");
-		System.out.println("-------------------------");
-		System.out.println("[1] - Buy");
-		System.out.println("[2] - Sell");
-		System.out.println("[3] - Leave");
-		System.out.println("-------------------------");
-		System.out.println("");
-		System.out.println("Type in the number for which command you would like to execute");
-		
-		try
-		{
-			
-			Scanner storeInput = new Scanner(System.in);
-			storeRead = storeInput.nextInt();
-			
-			switch(storeRead)
+			System.out.println("Welcome to store");
+			System.out.println("");
+			System.out.println("-------------------------");
+			System.out.println("[1] - Buy");
+			System.out.println("[2] - Sell");
+			System.out.println("[3] - Leave");
+			System.out.println("-------------------------");
+			System.out.println("");
+			System.out.println("Type in the number for which command you would like to execute");
+
+			try
 			{
-			case 1:
-				//buy
-			break;	
-			
-			
-			case 2:
-				//sell
-			break;
-				
-				
-			case 3:
-				System.out.println("Leaving the store...");
-			break;
+
+				Scanner storeInput = new Scanner(System.in);
+				storeRead = storeInput.nextInt();
+
+				switch(storeRead)
+				{
+				case 1:
+					//buy
+				break;	
+
+
+				case 2:
+					//sell
+				break;
+
+
+				case 3:
+					System.out.println("Leaving the store...");
+				break;
+				}
 			}
-		}
-		
-		catch(Exception e)
-		{
-			System.out.println("That is an invalid input.");
-		}
+
+			catch(Exception e)
+			{
+				System.out.println("That is an invalid input.");
+			}
 		
 		}
 		
