@@ -2,66 +2,95 @@ package pirateGame;
 
 public class CombatShip {
 	
-	private static int ehull;
-	private static int esail;
-	private static  int esailToughness;
-	private static  int ecrew;
-	private static  int ecannon;
-	private static String edescription;
-
+	private  int ehull;
+	private  int esails;
+	private   int esailsToughness;
+	private   int ecrew;
+	private   int ecannons;
+	private  String edescription;
+	private  int maxEhull;
+	private  int maxEsails;
+	private   int maxesailsToughness;
+	private   int maxEcrew;
+	private   int maxEcannons;
 	
-	public static int getEhull() {
+	public  int getEhull() {
 		return ehull;
 	}
-	public static void setEhull(int ehull) {
-		CombatShip.ehull = ehull;
+	public void setEhull(int ehull) {
+		this.ehull = ehull;
 	}
-	public static int getEsail() {
-		return esail;
+	public  int getEsails() {
+		return esails;
 	}
-	public static void setEsail(int esail) {
-		CombatShip.esail = esail;
+	public  void setEsails(int esails) {
+		this.esails = esails;
 	}
-	public static int getEsailToughness() {
-		return esailToughness;
+	public  int getEsailsToughness() {
+		return esailsToughness;
 	}
-	public static void setEsailToughness(int esailToughness) {
-		CombatShip.esailToughness = esailToughness;
+	public  void setEsailsToughness(int esailsToughness) {
+		this.esailsToughness = esailsToughness;
 	}
-	public static int getEcrew() {
+	public  int getEcrew() {
 		return ecrew;
 	}
-	public static void setEcrew(int ecrew) {
-		CombatShip.ecrew = ecrew;
+	public  void setEcrew(int ecrew) {
+		this.ecrew = ecrew;
 	}
-	public static int getEcannon() {
-		return ecannon;
+	public  int getEcannons() {
+		return ecannons;
 	}
-	public static void setEcannon(int ecannon) {
-		CombatShip.ecannon = ecannon;
+	public  void setEcannons(int ecannons) {
+		this.ecannons = ecannons;
 	}
-	public static String getEdescription() {
+	public String getEdescription() {
 		return edescription;
 	}
-	public static void setEdescription(String edescription) {
-		CombatShip.edescription = edescription;
+	public void setEdescription(String edescription) {
+		this.edescription = edescription;
 	}
-	public static void makeCutter(){
-		ehull=6;
-		esail=10;
-		esailToughness=1;
+	/**
+	 * 
+	 */
+	public  void display() {
+		System.out.println("Your Hull:"+ehull+"/"+maxEhull);
+		System.out.println("Your Sails:"+esails+"/"+maxEsails);
+		System.out.println("Your Crew:"+ecrew+"/"+maxEcrew);
+		System.out.println("Your Cannons:"+ecannons+"/"+maxEcannons);
+	//	System.out.println("Enemy Hull:"+ehull);
+	}
+	public  void makeCutter(){
+		ehull=12;
+		maxEhull=ehull;
+		
+		esails=10;
+		maxEsails=esails;
+		esailsToughness=1;
+		
 		ecrew=8;
-		ecannon=6;
+		maxEcrew=ecrew;
+		
+		ecannons=6;
+		maxEcannons=ecannons;
+		
 		edescription="A small and sleek vessel designed for coastal travel. It usually carries goods and mail. ";
 		
 		
 	}
-	public static void makeBrig(){
-		ehull=10;
-		esail=8;
-		esailToughness=2;
+	public  void makeBrig(){
+		ehull=20;
+		maxEhull=ehull;
+		
+		esails=8;
+		maxEsails=esails;
+		esailsToughness=2;
+		
 		ecrew=8;
-		ecannon=6;
+		maxEcrew=ecrew;
+		
+		ecannons=6;
+		maxEcannons=ecannons;
 		edescription="A medium sized cargo vessel capable of traveling to far away lands. It can hold animals, colonists and valuable goods. ";
 		
 		
