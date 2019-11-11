@@ -122,43 +122,43 @@ public class PortMenu
 		while(yardRead != 3)
 		{
 			
-		System.out.println("Welcome to shipyard");
-		System.out.println("");
-		System.out.println("-------------------------");
-		System.out.println("[1] - Repair");
-		System.out.println("[2] - Recruit Crewmembers");
-		System.out.println("[3] - Leave");
-		System.out.println("-------------------------");
-		System.out.println("");
-		System.out.println("Type in the number for which command you would like to execute");
-		
-		try
-		{
-			Scanner yardInput = new Scanner(System.in);
-			yardRead = yardInput.nextInt();
-			
-			switch(yardRead)
+			System.out.println("Welcome to shipyard");
+			System.out.println("");
+			System.out.println("-------------------------");
+			System.out.println("[1] - Repair");
+			System.out.println("[2] - Recruit Crewmembers");
+			System.out.println("[3] - Leave");
+			System.out.println("-------------------------");
+			System.out.println("");
+			System.out.println("Type in the number for which command you would like to execute");
+
+			try
 			{
-				case 1:
-					//repair
-				break;	
-				
-				
-				case 2:
-					//recruit
-				break;
-					
-					
-				case 3:
-					System.out.println("Leaving the shipyard...");
-				break;
+				Scanner yardInput = new Scanner(System.in);
+				yardRead = yardInput.nextInt();
+
+				switch(yardRead)
+				{
+					case 1:
+						//repair
+					break;	
+
+
+					case 2:
+						//recruit
+					break;
+
+
+					case 3:
+						System.out.println("Leaving the shipyard...");
+					break;
+				}
 			}
-		}
-		
-		catch(Exception e)
-		{
-			System.out.println("That is an invalid input.");
-		}
+
+			catch(Exception e)
+			{
+				System.out.println("That is an invalid input.");
+			}
 		
 		}
 		
