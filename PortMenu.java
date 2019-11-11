@@ -140,12 +140,12 @@ public class PortMenu
 				switch(yardRead)
 				{
 					case 1:
-						//repair
+						//repair, asks how much, returns price, asks y/n
 					break;	
 
 
 					case 2:
-						//recruit
+						//recruit, asks how many, returns price, asks y/n
 					break;
 
 
