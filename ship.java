@@ -1,7 +1,7 @@
+
 public class ship {
 
 	//public static void main(String[] args) {
-	// sunday after 7 and tuesday around 9
 		
 		private int water;
 		private int food;
@@ -78,7 +78,7 @@ public class ship {
 	public int removeWater(int water, int waterRemove) {
 		this.water = water - waterRemove;
 		if (this.water <= 0) {
-			System.out.println("Insuffieient amount of water! Action can ny be perfrormed!");
+			System.out.println("Insuffieient amount of water! Action can not be perfrormed!");
 		} 
 		return water;
 	}
@@ -97,7 +97,7 @@ public class ship {
 	public int removeFood(int food, int foodRemove) {
 		this.food = food - foodRemove;
 		if (this.food <= 0) {
-			System.out.println("Insuffieient amount of food! Action can ny be perfrormed!");
+			System.out.println("Insuffieient amount of food! Action can not be performed!");
 		} 
 		return food;
 	}
@@ -112,11 +112,19 @@ public class ship {
 	}
 	
 	public int removeCrew(int crew, int crewDeath) {
-		
+		this.crew = crew - crewDeath;
+		if (this.crew <= 0) {
+			System.out.println("All your crewmates have died");
+			this.crew = 0;
+		} 
 		return crew;
 	}
-	public int addCrew(int crew, int crewRecruit) {
-		
+	public int addCrew(int crew, int crewRecruit, int crewMax) {
+		this.crew = crew + crewRecruit;
+		if (this.crew > crewMax) {
+			System.out.println("Amount of crew exceeds the maximum capacity. Discarding the excess.");
+			this.crew = crewMax;
+		}
 		return crew;
 	}
 	// health of sails
@@ -143,29 +151,48 @@ public class ship {
 	}*/
 	
 	public int removeCannon(int cannon, int cannonRemove) {
-		
+		this.cannon = cannon - cannonRemove;
+		if (this.cannon <= 0) {
+			System.out.println("All your cannons have been destroyed.");
+			this.cannon = 0;
+		} 
 		return cannon;
 	}
-	public int addCannon(int cannon, int cannonAdd) {
-		
+	public int addCannon(int cannon, int cannonAdd, int cannonMax) {
+		this.cannon = cannon + cannonAdd;
+		if (this.cannon > cannonMax) {
+			System.out.println("Amount of cannons exceeds the maximum capacity. Discarding the excess.");
+			this.cannon = cannonMax;
+		}
 		return cannon;
 	}
 	
 	public int removeAmmo(int ammo, int ammoRemove) {
-		
+		this.ammo = ammo - ammoRemove;
+		if (this.ammo <= 0) {
+			System.out.println("All your ammo has been used");
+			this.ammo = 0;
+		} 
 		return ammo;
 	}
-	public int addAmmo(int ammo, int ammoAdd) {
-		
+	public int addAmmo(int ammo, int ammoAdd, int ammoMax) {
+		this.ammo = ammo + ammoAdd;
+		if (this.ammo > ammoMax) {
+			System.out.println("Amount of ammo exceeds the maximum capacity. Discarding the excess.");
+			this.ammo = ammoMax;
+		}
 		return ammo;
 	}
 	
 	public int removeTreasury(int treasury, int treasuryRemove) {
-		
+		this.treasury = treasury - treasuryRemove;
+		if (this.treasury <= 0) {
+			System.out.println("Treasury does not have enough money for " + treasuryRemove + " to be withdrawn.");
+		} 
 		return treasury;
 	}
 	public int addTreasury(int treasury, int treasuryAdd) {
-		
+		this.treasury = treasury + treasuryAdd;
 		return treasury;
 	}
 
