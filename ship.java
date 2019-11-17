@@ -1,4 +1,3 @@
-
 public class ship {
 
 	//public static void main(String[] args) {
@@ -12,7 +11,8 @@ public class ship {
 		private int cannon;
 		private int ammo;
 		private int treasury;
-		// int sword
+		private int sailToughness;
+		// int sword ???
 		
 	//public static void ship1() {
 		
@@ -66,6 +66,9 @@ public class ship {
 		return ammo;
 	}
 	
+	public void setTreasury(int treasury) {
+		this.treasury = treasury;
+	}
 	public int getTreasury() {
 		return treasury;
 	}
@@ -73,72 +76,97 @@ public class ship {
 	// Use to remove amount of water needed
 	// put in error if the amount of water removed would result in the food variable t drop below zero
 	public int removeWater(int water, int waterRemove) {
-		
+		this.water = water - waterRemove;
+		if (this.water <= 0) {
+			System.out.println("Insuffieient amount of water! Action can ny be perfrormed!");
+		} 
 		return water;
 	}
 	// use to add water found in treasure or bought
 	// put in code if the amount of water added would exceed the maximum amount
 	//(set to max and discard the remaining amount)
-	public int addWater(int water, int waterAdd) {
-		
+	public int addWater(int water, int waterAdd, int waterMax) {
+		this.water = water + waterAdd;
+		if (this.water > waterMax) {
+			System.out.println("Water found exceeds the maximum amount. Discarding the overflow.");
+			this.water = waterMax;
+		}
 		return water;
 	}
 	// use to remove amount of food needed for action
 	public int removeFood(int food, int foodRemove) {
-		
+		this.food = food - foodRemove;
+		if (this.food <= 0) {
+			System.out.println("Insuffieient amount of food! Action can ny be perfrormed!");
+		} 
 		return food;
 	}
 	// use to add food found in treasure, looted, or bought
-	public int addFood(int food, int foodAdd) {
-		
+	public int addFood(int food, int foodAdd, int foodMax) {
+		this.food = food + foodAdd;
+		if (this.water > foodMax) {
+			System.out.println("Food found exceeds the maximum amount. Discarding the overflow.");
+			this.water = foodMax;
+		}
 		return food;
 	}
 	
-	public int removeCrew(int food, int foodRemove) {
+	public int removeCrew(int crew, int crewDeath) {
 		
-		return food;
+		return crew;
 	}
-	public int addCrew(int food, int foodrAdd) {
+	public int addCrew(int crew, int crewRecruit) {
 		
-		return food;
+		return crew;
 	}
 	// health of sails
 	// no more than 30
 	// fast ships have more health and slower sails have less health
-	public int removeSails(int food, int foodRemove) {
+	
+	// DONT NEED THIS PART
+	/*public int removeSails(int sails, int sailsToughness) {
 		
-		return food;
+		return sails;
 	}
-	public int addSails(int food, int foodrAdd) {
+	public int addSails(int sails, int sailsAdd) {
 		
-		return food;
+		return sails;
 	}
 	
-	public int removeHull(int food, int foodRemove) {
+	public int removeHull(int hull, int hullRemove) {
 		
-		return food;
+		return hull;
 	}
-	public int addHull(int food, int foodrAdd) {
+	public int addHull(int hull, int hullAdd) {
 		
-		return food;
+		return hull;
+	}*/
+	
+	public int removeCannon(int cannon, int cannonRemove) {
+		
+		return cannon;
+	}
+	public int addCannon(int cannon, int cannonAdd) {
+		
+		return cannon;
 	}
 	
-	public int removeCannon(int food, int foodRemove) {
+	public int removeAmmo(int ammo, int ammoRemove) {
 		
-		return food;
+		return ammo;
 	}
-	public int addCannon(int food, int foodAdd) {
+	public int addAmmo(int ammo, int ammoAdd) {
 		
-		return food;
+		return ammo;
 	}
 	
-	public int removeAmmo(int food, int foodRemove) {
+	public int removeTreasury(int treasury, int treasuryRemove) {
 		
-		return food;
+		return treasury;
 	}
-	public int addAmmo(int food, int foodrAdd) {
+	public int addTreasury(int treasury, int treasuryAdd) {
 		
-		return food;
+		return treasury;
 	}
 
 }
