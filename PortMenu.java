@@ -104,7 +104,7 @@ public class PortMenu
 					//buy
 				{									
 					System.out.println("You are selecitng to buy,please enter item id");					
-					System.out.println("1.food\n2.sail\n3.crew\n4.hull\n5.ammo\n6.water\n7.cannon");
+					System.out.println("food \n ammo \n water");
 						Scanner buyOption=new Scanner(System.in);
 						String buyRead=buyOption.next();											 
 						
@@ -126,14 +126,6 @@ public class PortMenu
 								break;
 							}								
 							break;							
-						case "sail":			
-							System.out.println("Do you want to buy sail? true/false");
-							
-						case "crew": 
-							//System.out.println("Do you want to buy crew? true/false");
-							
-						case "hull":
-							//System.out.println("Do you want to buy hull? true/false");
 							
 						case "ammo":
 							//System.out.println("Do you want to buy ammo? true/false");
@@ -204,11 +196,51 @@ public class PortMenu
 				{
 					case 1:
 						//repair, asks how much, returns price, asks y/n
+						System.out.println("Would you like to repair your hull? true/false");
+						
+						Scanner repairInput=new Scanner(System.in);
+						boolean repairHullRead=repairInput.nextBoolean();	
+						
+						if(repairHullRead == true)
+						{
+							System.out.println("It will cost 10 gold"); 
+							System.out.println("Would you like to proceed? true/false");
+							boolean buyHullRead=repairInput.nextBoolean();	
+							
+							if(buyHullRead == true)
+							{
+								//take away gold 
+								//insufficient gold should not allow purchase
+								ship.setHull(); //insert max value
+								System.out.println("Your ship has been repaired");
+							}
+						}
+						
+						
 					break;	
 
 
 					case 2:
 						//recruit, asks how many, returns price, asks y/n
+						System.out.println("Would you like to repair your hull? true/false");
+						
+						Scanner crewInput=new Scanner(System.in);
+						boolean crewRead=crewInput.nextBoolean();	
+						
+						if(crewRead == true)
+						{
+							System.out.println("It will cost 10 gold"); 
+							System.out.println("Would you like to proceed? true/false");
+							boolean buyCrewRead=crewInput.nextBoolean();	
+							
+							if(buyCrewRead == true)
+							{
+								//take away gold 
+								//insufficient gold should not allow purchase
+								ship.setCrew(); //insert max value
+								System.out.println("Your crew has been replenished");
+							}
+						}
 					break;
 
 
