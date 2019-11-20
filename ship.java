@@ -1,22 +1,33 @@
-
-public class ship {
+package pirateGame;
+public  class ship {
 
 	//public static void main(String[] args) {
+	// sunday after 7 and tuesday around 9
 		
-		private int water;
-		private int food;
-		private int crew;
-		private int sails;
-		private int hull;
-		private int cannon;
-		private int ammo;
-		private int treasury;
-		private int sailToughness;
-		// int sword ???
+		private static int water;
+		private static int food;
+		private static int crew;
+		private static int sails;
+		private static int hull;
+		private static int cannon;
+		private static int ammo;
+		private static int treasury;
+		// int sword
 		
-	//public static void ship1() {
+	public  ship() {
 		
-	//}
+		
+		
+	}
+	public void shipNewGame() {
+		water=10;
+		food=10;
+		crew =5;
+		sails=10;
+		hull=10;
+		cannon=8;
+		treasury=200;
+	}
 	public void setWater(int water) {
 		this.water = water;
 	}
@@ -24,10 +35,10 @@ public class ship {
 		return water;
 	}
 	
-	public void setFood(int food) {
-		this.food = food;
+	public static void setFood(int food) {
+		food = food;
 	}
-	public int getFood() {
+	public static int getFood() {
 		return food;
 	}
 	
@@ -66,9 +77,6 @@ public class ship {
 		return ammo;
 	}
 	
-	public void setTreasury(int treasury) {
-		this.treasury = treasury;
-	}
 	public int getTreasury() {
 		return treasury;
 	}
@@ -76,124 +84,73 @@ public class ship {
 	// Use to remove amount of water needed
 	// put in error if the amount of water removed would result in the food variable t drop below zero
 	public int removeWater(int water, int waterRemove) {
-		this.water = water - waterRemove;
-		if (this.water <= 0) {
-			System.out.println("Insuffieient amount of water! Action can not be perfrormed!");
-		} 
+		
 		return water;
 	}
 	// use to add water found in treasure or bought
 	// put in code if the amount of water added would exceed the maximum amount
 	//(set to max and discard the remaining amount)
-	public int addWater(int water, int waterAdd, int waterMax) {
-		this.water = water + waterAdd;
-		if (this.water > waterMax) {
-			System.out.println("Water found exceeds the maximum amount. Discarding the overflow.");
-			this.water = waterMax;
-		}
+	public int addWater(int water, int waterAdd) {
+		
 		return water;
 	}
 	// use to remove amount of food needed for action
 	public int removeFood(int food, int foodRemove) {
-		this.food = food - foodRemove;
-		if (this.food <= 0) {
-			System.out.println("Insuffieient amount of food! Action can not be performed!");
-		} 
+		
 		return food;
 	}
 	// use to add food found in treasure, looted, or bought
-	public int addFood(int food, int foodAdd, int foodMax) {
-		this.food = food + foodAdd;
-		if (this.water > foodMax) {
-			System.out.println("Food found exceeds the maximum amount. Discarding the overflow.");
-			this.water = foodMax;
-		}
+	public static int addFood( int foodAdd) {
+		food=food+foodAdd;
+		
 		return food;
 	}
 	
-	public int removeCrew(int crew, int crewDeath) {
-		this.crew = crew - crewDeath;
-		if (this.crew <= 0) {
-			System.out.println("All your crewmates have died");
-			this.crew = 0;
-		} 
-		return crew;
+	public int removeCrew(int food, int foodRemove) {
+		
+		return food;
 	}
-	public int addCrew(int crew, int crewRecruit, int crewMax) {
-		this.crew = crew + crewRecruit;
-		if (this.crew > crewMax) {
-			System.out.println("Amount of crew exceeds the maximum capacity. Discarding the excess.");
-			this.crew = crewMax;
-		}
-		return crew;
+	public int addCrew(int food, int foodrAdd) {
+		
+		return food;
 	}
 	// health of sails
 	// no more than 30
 	// fast ships have more health and slower sails have less health
-	
-	// DONT NEED THIS PART
-	/*public int removeSails(int sails, int sailsToughness) {
+	public int removeSails(int food, int foodRemove) {
 		
-		return sails;
+		return food;
 	}
-	public int addSails(int sails, int sailsAdd) {
+	public int addSails(int food, int foodrAdd) {
 		
-		return sails;
+		return food;
 	}
 	
-	public int removeHull(int hull, int hullRemove) {
+	public int removeHull(int food, int foodRemove) {
 		
-		return hull;
+		return food;
 	}
-	public int addHull(int hull, int hullAdd) {
+	public int addHull(int food, int foodrAdd) {
 		
-		return hull;
-	}*/
-	
-	public int removeCannon(int cannon, int cannonRemove) {
-		this.cannon = cannon - cannonRemove;
-		if (this.cannon <= 0) {
-			System.out.println("All your cannons have been destroyed.");
-			this.cannon = 0;
-		} 
-		return cannon;
-	}
-	public int addCannon(int cannon, int cannonAdd, int cannonMax) {
-		this.cannon = cannon + cannonAdd;
-		if (this.cannon > cannonMax) {
-			System.out.println("Amount of cannons exceeds the maximum capacity. Discarding the excess.");
-			this.cannon = cannonMax;
-		}
-		return cannon;
+		return food;
 	}
 	
-	public int removeAmmo(int ammo, int ammoRemove) {
-		this.ammo = ammo - ammoRemove;
-		if (this.ammo <= 0) {
-			System.out.println("All your ammo has been used");
-			this.ammo = 0;
-		} 
-		return ammo;
+	public int removeCannon(int food, int foodRemove) {
+		
+		return food;
 	}
-	public int addAmmo(int ammo, int ammoAdd, int ammoMax) {
-		this.ammo = ammo + ammoAdd;
-		if (this.ammo > ammoMax) {
-			System.out.println("Amount of ammo exceeds the maximum capacity. Discarding the excess.");
-			this.ammo = ammoMax;
-		}
-		return ammo;
+	public int addCannon(int food, int foodAdd) {
+		
+		return food;
 	}
 	
-	public int removeTreasury(int treasury, int treasuryRemove) {
-		this.treasury = treasury - treasuryRemove;
-		if (this.treasury <= 0) {
-			System.out.println("Treasury does not have enough money for " + treasuryRemove + " to be withdrawn.");
-		} 
-		return treasury;
+	public int removeAmmo(int food, int foodRemove) {
+		
+		return food;
 	}
-	public int addTreasury(int treasury, int treasuryAdd) {
-		this.treasury = treasury + treasuryAdd;
-		return treasury;
+	public int addAmmo(int food, int foodrAdd) {
+		
+		return food;
 	}
 
 }

@@ -1,4 +1,4 @@
-
+package pirateGame;
 public class DifferentShips {
 
 	public static void ship1() {
