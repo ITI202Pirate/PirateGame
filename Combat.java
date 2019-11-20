@@ -2,7 +2,7 @@ package pirateGame;
 
 import java.util.Scanner;
 
-public class Combat {
+public class Combat extends ship {
 	private final double standardAccuracy= 6;//All cannons have 60% accuracy by default, this number is X/10
 	private  int startingDistance= 30;//Starting distance between the two ships.
 	private int escape=70;//Distance at which ships escape battle
@@ -24,7 +24,12 @@ public class Combat {
 	
 	
 	
-	public Combat(int crew, int sails, int hull, int cannons, String enemy) {
+	public Combat(String enemy) {
+		//getCrew();
+		crew=getCrew();
+		sails=getSail();
+		hull=getHull();
+		cannons=getCannon();
 		setPlayerShip(crew,sails,hull,cannons);
 		
 	//	Scanner scan=new Scanner(System.in);
@@ -123,7 +128,7 @@ public class Combat {
 		//End Combat
 		
 		System.out.println("Combat Ends, Call loot here, update main ship stats to match damage and crew loss");
-		scan.close();
+	//	scan.close();
 	
 		
 		
@@ -139,6 +144,7 @@ public class Combat {
 		System.out.println("[R]un Away");
 		
 		option=scan.next();
+		
 		
 		if (option.length()==1) {
 			break;

@@ -1,3 +1,6 @@
+package pirateGame;
+import java.io.IOException;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class MainMenu
@@ -28,7 +31,15 @@ public class MainMenu
 				switch(mainMenuRead)
 				{
 					case 1:
+						
 						// insert new game 
+						
+						ship player= new ship();
+						player.shipNewGame();
+						
+						System.out.println(player.getCannon());
+						PortMenu mainPort=new PortMenu();
+						
 					break;
 				
 					
@@ -71,13 +82,18 @@ public class MainMenu
 			}
 			
 			
-			catch(Exception e)
+			catch(InputMismatchException e)
 			{
 				System.out.println("That is an invalid input.");
 			}
 			
 		}
-		
+	try {
+		System.in.close();
+	} catch (IOException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}	
 	}
 
 }
