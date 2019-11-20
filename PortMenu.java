@@ -4,7 +4,7 @@ import java.util.InputMismatchException;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
-public class PortMenu
+public class PortMenu extends ship
 {
 
 	public  PortMenu()
