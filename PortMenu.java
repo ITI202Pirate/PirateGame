@@ -104,7 +104,7 @@ public class PortMenu extends ship
 					//buy
 				{									
 					System.out.println("You are selecitng to buy,please enter item id");					
-					System.out.println("food \n ammo \n water");
+					System.out.println("food \nammo \nwater");
 						Scanner buyOption=new Scanner(System.in);
 						String buyRead=buyOption.next();											 
 						
@@ -117,9 +117,9 @@ public class PortMenu extends ship
 							System.out.println("Enter quantity: ");
 							int foodAdd=buyOption.nextInt();													
 							
-							ship.addFood( foodAdd);
+							ship.setFood(foodAdd);
 							//ship.setFood(foodAdd);
-							System.out.println(foodAdd+" food added in your bag");
+							System.out.println(foodAdd +" food added in your bag");
 							System.out.println("Now you have food: "+ship.getFood());
 							}else if(buyYesNo==false) {
 								System.out.println("Returned to store main menu");
@@ -209,9 +209,10 @@ public class PortMenu extends ship
 							
 							if(buyHullRead == true)
 							{
+								int hullAmount = 0;
 								//take away gold 
 								//insufficient gold should not allow purchase
-								ship.setHull(); //insert max value
+								//ship.setHull(hullAmount); //insert max value
 								System.out.println("Your ship has been repaired");
 							}
 						}
@@ -222,7 +223,7 @@ public class PortMenu extends ship
 
 					case 2:
 						//recruit, asks how many, returns price, asks y/n
-						System.out.println("Would you like to repair your hull? true/false");
+						System.out.println("Would you like to recruit members? true/false");
 						
 						Scanner crewInput=new Scanner(System.in);
 						boolean crewRead=crewInput.nextBoolean();	
@@ -235,9 +236,10 @@ public class PortMenu extends ship
 							
 							if(buyCrewRead == true)
 							{
+								int crewAmount = 0; //placeholder
 								//take away gold 
 								//insufficient gold should not allow purchase
-								ship.setCrew(); //insert max value
+								//ship.setCrew(crewAmount); //insert max value
 								System.out.println("Your crew has been replenished");
 							}
 						}
