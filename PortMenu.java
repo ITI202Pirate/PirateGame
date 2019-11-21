@@ -6,8 +6,7 @@ import java.util.Scanner;
 
 public class PortMenu extends ship 
 {
-	Player player = new Player();
-	
+
 	public  PortMenu()
 	{
 		
@@ -80,7 +79,7 @@ public class PortMenu extends ship
 
 	
 	
-
+	Player player = new Player();
 	
 	
 	
@@ -116,46 +115,287 @@ public class PortMenu extends ship
 					//buy
 				{									
 					System.out.println("You are selecitng to buy,please enter item id");					
-					System.out.println("food \nammo \nwater");
+					System.out.println("1.food\n2.ammo\n3.water\n4.cannon");
 						Scanner buyOption=new Scanner(System.in);
-						String buyRead=buyOption.next();											 
+						int buyRead=buyOption.nextInt();											 
 						
 						
 						switch(buyRead) {
-						case "food":
-							System.out.println("Do you want to buy food? true/false");
-							boolean buyYesNo=buyOption.nextBoolean();
-							if (buyYesNo==true) {	
-							System.out.println("Enter quantity: ");
-							int foodAdd=buyOption.nextInt();													
+						case 1:
+							int foodPrice=10;
 							
-							setFood(foodAdd);
-							//ship.setFood(foodAdd);
-							System.out.println(foodAdd +" food added in your bag");
-							System.out.println("Now you have food: "+ship.getFood());
-							}else if(buyYesNo==false) {
+							System.out.println("Now you have "+player.getDoubloons()+ " doubloons, each food will cost "+foodPrice+ " doubloons");
+							System.out.println("Do you want to buy food? true/false");
+							
+							boolean buyYesNo1=buyOption.nextBoolean();
+							
+							while (player.getDoubloons()>foodPrice) {
+								
+								if (buyYesNo1==true) {							
+							System.out.println("Enter quantity: "); //if have enough money get quantity then calculate totalcost
+							int food=getFood();
+							int foodAdd=buyOption.nextInt();													
+							int newfood=foodAdd+food;
+							setFood(newfood);
+							
+							int totalCost=foodPrice*foodAdd;
+								
+							if (totalCost<=player.getDoubloons()) {
+							System.out.println(foodAdd+" food added in your bag");
+							System.out.println("Now you have food: "+newfood+" Remaining doubloons: "+(player.getDoubloons()-totalCost));
+							player.setDoubloons(player.getDoubloons()-totalCost);
+							}else {
+								System.out.println("You don't have enough money, returned to store main menu");
+								break;
+							}
+							
+							} else if(buyYesNo1==false) {
+								System.out.println("Returned to store main menu");
+								break;
+							}			break;				
+							}
+							break;							
+						
+						
+							
+						case 2:
+							int ammoPrice=10;
+							System.out.println("Now you have "+player.getDoubloons()+ " doubloons, each ammo will cost "+ammoPrice+ " doubloons");
+							System.out.println("Do you want to buy ammo? true/false");
+							
+							boolean buyYesNo4=buyOption.nextBoolean();
+							
+							while (player.getDoubloons()>ammoPrice) {
+							if (buyYesNo4==true) {		
+							
+							System.out.println("Enter quantity: ");  
+							int ammo=getAmmo();
+							int ammoAdd=buyOption.nextInt();													
+							int newammo=ammoAdd+ammo;
+							setAmmo(newammo);
+							int totalCost=ammoPrice*ammoAdd;
+							
+							if (totalCost<=player.getDoubloons()) {
+							System.out.println(ammoAdd+" ammo added in your bag");
+							System.out.println("Now you have ammo: "+newammo+" Remaining doubloons: "+(player.getDoubloons()-totalCost));
+							player.setDoubloons(player.getDoubloons()-totalCost);
+							}else {
+								System.out.println("You don't have enough money, returned to store main menu");
+								break;
+							}
+							
+							}else if(buyYesNo4==false) {
+								System.out.println("Returned to store main menu");
+								break;
+							}break;	
+							
+							}						
+							break;		
+						
+						case 3:
+							int waterPrice=10;
+							
+							System.out.println("Now you have "+player.getDoubloons()+ " doubloons, each water will cost "+waterPrice+ " doubloons");
+							System.out.println("Do you want to buy water? true/false");
+							boolean buyYesNo5=buyOption.nextBoolean();
+							
+							while (player.getDoubloons()>waterPrice) {
+							
+								if (buyYesNo5==true) {		
+							System.out.println("Enter quantity: ");
+							int water=getHull();
+							int waterAdd=buyOption.nextInt();													
+							int newwater=waterAdd+water;
+							setWater(newwater);
+							int totalCost=waterPrice*waterAdd;
+							
+							if (totalCost<=player.getDoubloons()) {
+							System.out.println(waterAdd+" water added in your bag");
+							System.out.println("Now you have water: "+newwater+" Remaining doubloons: "+(player.getDoubloons()-totalCost));
+							player.setDoubloons(player.getDoubloons()-totalCost);
+							}else {
+								System.out.println("You don't have enough money, returned to store main menu");
+								break;							
+							}
+							
+							}else if(buyYesNo5==false) {
+								System.out.println("Returned to store main menu");
+								break;
+							}		break;
+							
+							}						
+							break;		
+						
+						case 4:
+							int cannonPrice=10;
+							
+							System.out.println("Now you have "+player.getDoubloons()+ " doubloons, each cannon will cost "+cannonPrice+ " doubloons");
+							System.out.println("Do you want to buy cannon? true/false");
+							boolean buyYesNo6=buyOption.nextBoolean();
+							
+							while (player.getDoubloons()>cannonPrice) {
+							if (buyYesNo6==true) {		
+							System.out.println("Enter quantity: ");
+							
+							int cannon=getHull();
+							int cannonAdd=buyOption.nextInt();													
+							int newcannon=cannonAdd+cannon;
+							setCannon(newcannon);
+							int totalCost=cannonPrice*cannonAdd;
+							
+							if (totalCost<=player.getDoubloons()) {
+							System.out.println(cannonAdd+" cannon added in your bag");
+							System.out.println("Now you have cannon: "+newcannon+" Remaining doubloons: "+(player.getDoubloons()-totalCost));
+							player.setDoubloons(player.getDoubloons()-totalCost);
+							}else {
+								System.out.println("You don't have enough money, returned to store main menu");
+								break;
+							}
+							
+							}else if(buyYesNo6==false) {
 								System.out.println("Returned to store main menu");
 								break;
 							}								
-							break;							
-							
-						case "ammo":
-							//System.out.println("Do you want to buy ammo? true/false");
-							
-						case "water":
-							//System.out.println("Do you want to buy water? true/false");
+							break;		
 						
-						}
+					}break;
 					}
-
-					
+				}
 				break;	
 
 
 				case 2:
-					//sell
+				{
+					System.out.println("You are selecting to sell, please enter item id: ");
+					System.out.println("1.food\n2.ammo\n3.water\n4.cannon");
+					Scanner sellOption=new Scanner(System.in);
+					int sellRead=sellOption.nextInt();
+				
+				
+					switch(sellRead) {
+					case 1:
+						int foodSellPrice=6;
+						int food=getFood();					
+						System.out.println("Now you have doubloons: "+player.getDoubloons()+". Each food you sold will gain "+foodSellPrice+" doubloons");						
+						System.out.println("Now you have food: "+food);
+						System.out.println("Do you want to sell food? true/false");
+						
+						boolean sellYesNo=sellOption.nextBoolean();
+						while (sellYesNo==true) {
+							
+							
+							System.out.println("The quantity of food you want to sell, please enter: ");
+							int foodRemove=sellOption.nextInt();
+						if(foodRemove>food) {
+							System.out.println("It seems that you don't have so much food on your bag. Please re-enter it");							
+						}else {
+																												
+						int newFood=food-foodRemove;
+						int totalEarn=foodSellPrice*foodRemove;
+						player.setDoubloons(totalEarn+player.getDoubloons());
+						System.out.println(foodRemove+" food has been sold");
+						System.out.println("Now you have food: "+newFood+" Remaining doubllons: "+player.getDoubloons());
+						setFood(newFood);	
+						break;
+						}} if(sellYesNo==false) {
+							System.out.println("Returned to store main menu");
+							break;
+						}				break;
+					
+					case 2:
+						int ammoSellPrice=6;
+						int ammo=getAmmo();
+						System.out.println("Now you have doubloons: "+player.getDoubloons()+". Each ammo you sold will gain "+ammoSellPrice+" doubloons");
+						
+						System.out.println("Now you have ammo: "+ammo);
+						System.out.println("Do you want to sell ammo? true/false");
+						boolean sellYesNo4=sellOption.nextBoolean();
+						while (sellYesNo4==true) {
+							
+							
+							System.out.println("The quantity of ammo you want to sell, please enter: ");
+							int ammoRemove=sellOption.nextInt();
+						if(ammoRemove>ammo) {
+							System.out.println("It seems that you don't have so much ammo on your bag. Please re-enter it");							
+						}else {
+																												
+						int newammo=ammo-ammoRemove;
+						int totalEarn=ammoSellPrice*ammoRemove;
+						player.setDoubloons(totalEarn+player.getDoubloons());
+						System.out.println(ammoRemove+" ammo has been sold");
+						System.out.println("Now you have ammo: "+newammo+" Remaining doubllons: "+player.getDoubloons());
+						setAmmo(newammo);	
+						break;
+						}} if(sellYesNo4==false) {
+							System.out.println("Returned to store main menu");
+							break;
+						}				
+						break;							
+					
+					
+					case 3:
+						int waterSellPrice=6;
+						int water=getWater();
+						System.out.println("Now you have doubloons: "+player.getDoubloons()+". Each water you sold will gain "+waterSellPrice+" doubloons");
+						
+						System.out.println("Now you have water: "+water);
+						System.out.println("Do you want to sell water? true/false");
+						boolean sellYesNo5=sellOption.nextBoolean();
+						while (sellYesNo5==true) {
+							
+							
+							System.out.println("The quantity of water you want to sell, please enter: ");
+							int waterRemove=sellOption.nextInt();
+						if(waterRemove>water) {
+							System.out.println("It seems that you don't have so much water on your bag. Please re-enter it");							
+						}else {
+																												
+						int newwater=water-waterRemove;
+						int totalEarn=waterSellPrice*waterRemove;
+						player.setDoubloons(totalEarn+player.getDoubloons());
+						
+						System.out.println(waterRemove+" water has been sold");
+						System.out.println("Now you have water: "+newwater+" Remaining doubllons: "+player.getDoubloons());
+						setWater(newwater);	
+						break;
+						}} if(sellYesNo5==false) {
+							System.out.println("Returned to store main menu");
+							break;
+						}			
+						break;	
+						
+					case 4:
+						int cannonSellPrice=6;
+						int cannon=getCannon();
+						System.out.println("Now you have doubloons: "+player.getDoubloons()+". Each cannon you sold will gain "+cannonSellPrice+" doubloons");
+						
+						System.out.println("Now you have cannon: "+cannon);
+						System.out.println("Do you want to sell cannon? true/false");
+						boolean sellYesNo6=sellOption.nextBoolean();
+						while (sellYesNo6==true) {
+							
+							
+							System.out.println("The quantity of cannon you want to sell, please enter: ");
+							int cannonRemove=sellOption.nextInt();
+						if(cannonRemove>cannon) {
+							System.out.println("It seems that you don't have so much cannon on your bag. Please re-enter it");							
+						}else {
+																												
+						int newcannon=cannon-cannonRemove;
+						int totalEarn=cannonSellPrice*cannonRemove;
+						player.setDoubloons(totalEarn+player.getDoubloons());
+						
+						System.out.println(cannonRemove+" cannon has been sold");
+						System.out.println("Now you have cannon: "+newcannon+" Remaining doubllons: "+player.getDoubloons());
+						setCannon(newcannon);	
+						break;
+						}} if(sellYesNo6==false) {
+							System.out.println("Returned to store main menu");
+							break;
+						}	break;
+					}
+					}
 				break;
-
 
 				case 3:
 					System.out.println("Leaving the store...");
@@ -179,7 +419,6 @@ public class PortMenu extends ship
 		//storeInput.close();
 		
 	}
-	
 	
 	
 	
