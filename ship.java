@@ -121,7 +121,9 @@ public class ship {
 			System.out.println("Insuffieient amount of water! Action can not be perfrormed!");
 		} */
 		try {
-			water <= 0;
+			if (water <= 0) {
+				throw new Exception();
+			}
 		}
 		catch (Exception e){
 			System.out.println("Insuffieient amount of water! Action can not be perfrormed!");
@@ -146,7 +148,9 @@ public class ship {
 			System.out.println("Insuffieient amount of food! Action can not be performed!");
 		} */
 		try {
-			food <= 0;
+			if (food <= 0) {
+				throw new Exception();
+			}
 		}
 		catch (Exception e){
 			System.out.println("Insuffieient amount of food! Action can not be perfrormed!");
@@ -170,7 +174,9 @@ public class ship {
 			crew = 0;
 		} */
 		try {
-			crew <= 0;
+			if (crew <= 0) {
+				throw new Exception();
+			}
 		}
 		catch (Exception e){
 			System.out.println("All your crewmates have died");
@@ -194,7 +200,9 @@ public class ship {
 			cannon = 0;
 		} */
 		try {
-			cannon <= 0;
+			if (cannon <= 0) {
+				throw new Exception();
+			}
 		}
 		catch (Exception e){
 			System.out.println("All your cannons have been destroyed.");
@@ -218,7 +226,9 @@ public class ship {
 			ammo = 0;
 		} */
 		try {
-			ammo <= 0;
+			if (ammo <= 0) {
+				throw new Exception();
+			}
 		}
 		catch (Exception e){
 			System.out.println("All your ammo has been used");
@@ -248,4 +258,3 @@ public class ship {
 	}
 
 }
-
