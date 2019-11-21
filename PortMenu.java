@@ -4,11 +4,14 @@ import java.util.InputMismatchException;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
-public class PortMenu extends ship
+public class PortMenu extends ship 
 {
 
 	public  PortMenu()
 	{
+		
+		int food = getFood();
+		
 		int portRead = 0;
 		Scanner portInput = new Scanner(System.in);
 		while(portRead != 4)
@@ -26,7 +29,7 @@ public class PortMenu extends ship
 			
 			try 
 			{
-			
+				
 				
 				if(portInput.hasNext()) {
 				portRead = portInput.nextInt();
@@ -41,7 +44,7 @@ public class PortMenu extends ship
 				
 				
 				case 2:
-					ship();
+					shipyard();
 				break;	
 				
 				
@@ -74,7 +77,7 @@ public class PortMenu extends ship
 	}
 	
 	
-	public static void store()
+	public void store()
 	{
 		int storeRead = 0;
 		Scanner storeInput = new Scanner(System.in);
@@ -117,7 +120,7 @@ public class PortMenu extends ship
 							System.out.println("Enter quantity: ");
 							int foodAdd=buyOption.nextInt();													
 							
-							ship.setFood(foodAdd);
+							setFood(foodAdd);
 							//ship.setFood(foodAdd);
 							System.out.println(foodAdd +" food added in your bag");
 							System.out.println("Now you have food: "+ship.getFood());
@@ -169,7 +172,7 @@ public class PortMenu extends ship
 	}
 	
 	
-	public static void ship()
+	public void shipyard()
 	{
 		
 		int yardRead = 0;
@@ -203,17 +206,27 @@ public class PortMenu extends ship
 						
 						if(repairHullRead == true)
 						{
-							System.out.println("It will cost 10 gold"); 
+							System.out.println("It will cost 10 doubloons"); 
+							System.out.println("You have " + Player.getDoubloons() + "doubloons");
 							System.out.println("Would you like to proceed? true/false");
 							boolean buyHullRead=repairInput.nextBoolean();	
 							
 							if(buyHullRead == true)
 							{
-								int hullAmount = 0;
+								int hullAmount = 10;
+								int hullRepair = 0; //max value?
+								
 								//take away gold 
+								if(Player.getDoubloons() < hullAmount)
+								{
+									System.out.println("You have insufficient funds");
+								}
 								//insufficient gold should not allow purchase
-								//ship.setHull(hullAmount); //insert max value
+								else
+								{
+								setHull(hullRepair); //insert max value
 								System.out.println("Your ship has been repaired");
+								}
 							}
 						}
 						
@@ -230,7 +243,8 @@ public class PortMenu extends ship
 						
 						if(crewRead == true)
 						{
-							System.out.println("It will cost 10 gold"); 
+							System.out.println("It will cost 10 doubloons"); 
+							System.out.println("You have " + Player.getDoubloons() + "doubloons");
 							System.out.println("Would you like to proceed? true/false");
 							boolean buyCrewRead=crewInput.nextBoolean();	
 							
