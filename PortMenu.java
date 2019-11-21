@@ -76,6 +76,14 @@ public class PortMenu extends ship
 
 	}
 	
+
+	
+	
+	Player player = new Player();
+	
+	
+	
+	
 	
 	public void store()
 	{
@@ -172,6 +180,13 @@ public class PortMenu extends ship
 	}
 	
 	
+	
+	
+	
+	
+	
+	
+	
 	public void shipyard()
 	{
 		
@@ -207,23 +222,25 @@ public class PortMenu extends ship
 						if(repairHullRead == true)
 						{
 							System.out.println("It will cost 10 doubloons"); 
-							System.out.println("You have " + Player.getDoubloons() + "doubloons");
+							System.out.println("You have " + player.getDoubloons() + " doubloons");
 							System.out.println("Would you like to proceed? true/false");
 							boolean buyHullRead=repairInput.nextBoolean();	
 							
 							if(buyHullRead == true)
 							{
-								int hullAmount = 10;
+								int hullAmount = 1010;
 								int hullRepair = 0; //max value?
 								
 								//take away gold 
-								if(Player.getDoubloons() < hullAmount)
+								if(player.getDoubloons() < hullAmount)
 								{
 									System.out.println("You have insufficient funds");
+									System.out.println("Ship was not repaired");
 								}
 								//insufficient gold should not allow purchase
 								else
 								{
+								player.setDoubloons(player.getDoubloons() - hullAmount);	
 								setHull(hullRepair); //insert max value
 								System.out.println("Your ship has been repaired");
 								}
@@ -244,17 +261,31 @@ public class PortMenu extends ship
 						if(crewRead == true)
 						{
 							System.out.println("It will cost 10 doubloons"); 
-							System.out.println("You have " + Player.getDoubloons() + "doubloons");
+							System.out.println("You have " + player.getDoubloons() + " doubloons");
 							System.out.println("Would you like to proceed? true/false");
 							boolean buyCrewRead=crewInput.nextBoolean();	
 							
 							if(buyCrewRead == true)
 							{
-								int crewAmount = 0; //placeholder
+								int crewAmount = 10; //placeholder
+								int crewRecruit = 0;
 								//take away gold 
 								//insufficient gold should not allow purchase
-								//ship.setCrew(crewAmount); //insert max value
+								if(player.getDoubloons() < crewAmount)
+								{
+									System.out.println("You have insufficient funds");
+									System.out.println("Your crew was not replenished");
+								}
+								//insufficient gold should not allow purchase
+								else
+								{
+								player.setDoubloons(player.getDoubloons() - crewAmount);	
+								setCrew(crewRecruit); 
 								System.out.println("Your crew has been replenished");
+								
+								}
+								
+								
 							}
 						}
 					break;
