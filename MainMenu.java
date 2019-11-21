@@ -13,12 +13,12 @@ public class MainMenu
 		
 		while(mainMenuRead != 3)
 		{
-			System.out.println("Welcome to [game name]");
+			System.out.println("Welcome to Pirate Voyage");
 			System.out.println("");
 			System.out.println("-------------------------");
 			System.out.println("[1] - Start Game");
-			System.out.println("[2] - Load Game");
-			System.out.println("[3] - Exit");
+		//	System.out.println("[2] - Load Game");
+			System.out.println("[2] - Exit");
 			System.out.println("-------------------------");
 			System.out.println("");
 			System.out.println("Type in the number for which command you would like to execute");
@@ -33,22 +33,37 @@ public class MainMenu
 					case 1:
 						
 						// insert new game 
+						System.out.println("Enter Player Name");
 						
-						ship player= new ship();
-						player.shipNewGame();
 						
-						System.out.println(player.getCannon());
+						Player player=new Player();
+						try {
+							String name=mainMenuInput.next();
+						player.setName(name);
+						}catch(InputMismatchException e) {
+							
+						}
+						System.out.println("Welcome, Captain: "+player.getName());
+						
+						player.setSwordSkill();
+						player.setDoubloons(500);
+						
+					//	System.out.println(player.getSwordSkill());
+						ship playerShip= new ship();
+					//	player.shipNewGame();
+						
+						//System.out.println(playerShip.getCannon());
 						PortMenu mainPort=new PortMenu();
 						
 					break;
 				
 					
-					case 2:
+					//case 2:
 						// insert save
-					break;	
+					//break;	
 				
 					
-					case 3:
+					case 2:
 					
 						System.out.println("Are you sure you want to exit? (y/n)");
 						Scanner inputExit = new Scanner(System.in);
@@ -66,7 +81,7 @@ public class MainMenu
 					
 						else
 						{
-							System.out.println("That is an invalid input.");
+							System.out.println("Invalid Input, Returning to game");
 							
 						}
 						
@@ -74,7 +89,7 @@ public class MainMenu
 					
 					
 					default:
-						System.out.println("That is an invalid input.");
+						System.out.println("Please Try again and enter a integer between 1-2.");
 					break;
 						
 				}
@@ -84,7 +99,7 @@ public class MainMenu
 			
 			catch(InputMismatchException e)
 			{
-				System.out.println("That is an invalid input.");
+				System.out.println("Please Try again and enter a integer between 1-2.");
 			}
 			
 		}
