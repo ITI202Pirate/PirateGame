@@ -6,7 +6,8 @@ import java.util.Scanner;
 
 public class PortMenu extends ship 
 {
-
+	Player player = new Player();
+	
 	public  PortMenu()
 	{
 		
@@ -79,7 +80,7 @@ public class PortMenu extends ship
 
 	
 	
-	Player player = new Player();
+
 	
 	
 	
@@ -198,9 +199,10 @@ public class PortMenu extends ship
 			System.out.println("Welcome to shipyard");
 			System.out.println("");
 			System.out.println("-------------------------");
-			System.out.println("[1] - Repair");
-			System.out.println("[2] - Recruit Crewmembers");
-			System.out.println("[3] - Leave");
+			System.out.println("[1] - Repair Hull");
+			System.out.println("[2] - Repair Sail");
+			System.out.println("[3] - Recruit Crewmembers");
+			System.out.println("[4] - Leave");
 			System.out.println("-------------------------");
 			System.out.println("");
 			System.out.println("Type in the number for which command you would like to execute");
@@ -228,8 +230,8 @@ public class PortMenu extends ship
 							
 							if(buyHullRead == true)
 							{
-								int hullAmount = 1010;
-								int hullRepair = 0; //max value?
+								int hullAmount = 10; //cost
+								int hullRepair = 1; //units repaired
 								
 								//take away gold 
 								if(player.getDoubloons() < hullAmount)
@@ -241,7 +243,7 @@ public class PortMenu extends ship
 								else
 								{
 								player.setDoubloons(player.getDoubloons() - hullAmount);	
-								setHull(hullRepair); //insert max value
+								setHull(getHull() + hullRepair); //insert max value
 								System.out.println("Your ship has been repaired");
 								}
 							}
@@ -250,8 +252,46 @@ public class PortMenu extends ship
 						
 					break;	
 
-
 					case 2:
+						//repair, asks how much, returns price, asks y/n
+						System.out.println("Would you like to repair your sail? true/false");
+						
+						Scanner repairSailInput=new Scanner(System.in);
+						boolean repairSailRead=repairSailInput.nextBoolean();	
+						
+						if(repairSailRead == true)
+						{
+							System.out.println("It will cost 10 doubloons"); 
+							System.out.println("You have " + player.getDoubloons() + " doubloons");
+							System.out.println("Would you like to proceed? true/false");
+							boolean buySailRead=repairSailInput.nextBoolean();	
+							
+							if(buySailRead == true)
+							{
+								int sailAmount = 10; //cost
+								int sailRepair = 1; //units repaired
+								
+								//take away gold 
+								if(player.getDoubloons() < sailAmount)
+								{
+									System.out.println("You have insufficient funds");
+									System.out.println("Sail was not repaired");
+								}
+								//insufficient gold should not allow purchase
+								else
+								{
+								player.setDoubloons(player.getDoubloons() - sailAmount);	
+								setSail(getSail() + sailRepair); //insert max value
+								System.out.println("Your sail has been repaired");
+								}
+							}
+						}
+						
+						
+					break;	
+					
+					
+					case 3:
 						//recruit, asks how many, returns price, asks y/n
 						System.out.println("Would you like to recruit members? true/false");
 						
@@ -267,8 +307,8 @@ public class PortMenu extends ship
 							
 							if(buyCrewRead == true)
 							{
-								int crewAmount = 10; //placeholder
-								int crewRecruit = 0;
+								int crewAmount = 10; //cost
+								int crewRecruit = 1; //units recruit
 								//take away gold 
 								//insufficient gold should not allow purchase
 								if(player.getDoubloons() < crewAmount)
@@ -280,7 +320,7 @@ public class PortMenu extends ship
 								else
 								{
 								player.setDoubloons(player.getDoubloons() - crewAmount);	
-								setCrew(crewRecruit); 
+								setCrew(getCrew() + crewRecruit); 
 								System.out.println("Your crew has been replenished");
 								
 								}
@@ -289,9 +329,12 @@ public class PortMenu extends ship
 							}
 						}
 					break;
+					
+					
+					
 
 
-					case 3:
+					case 4:
 						System.out.println("Leaving the shipyard...");
 					break;
 				}
