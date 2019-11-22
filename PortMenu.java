@@ -4,6 +4,7 @@ import java.util.InputMismatchException;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
+
 public class PortMenu extends ship 
 {
 
@@ -50,9 +51,9 @@ public class PortMenu extends ship
 				
 				case 3:
 					System.out.println("Exiting the port...");
-					
-					Combat d1=new Combat("Cutter");
-					System.out.println("End Combat");
+					Sailing sail=new Sailing();
+					//Combat d1=new Combat("Cutter");
+					//System.out.println("End Combat");
 					//insert exploration options
 				break;
 				
@@ -159,6 +160,7 @@ public class PortMenu extends ship
 						
 							
 						case 2:
+							//Ammo is not being implemented
 							int ammoPrice=10;
 							System.out.println("Now you have "+player.getDoubloons()+ " doubloons, each ammo will cost "+ammoPrice+ " doubloons");
 							System.out.println("Do you want to buy ammo? true/false");
@@ -169,10 +171,10 @@ public class PortMenu extends ship
 							if (buyYesNo4==true) {		
 							
 							System.out.println("Enter quantity: ");  
-							int ammo=getAmmo();
+						//	int ammo=getAmmo();
 							int ammoAdd=buyOption.nextInt();													
 							int newammo=ammoAdd+ammo;
-							setAmmo(newammo);
+							//setAmmo(newammo);
 							int totalCost=ammoPrice*ammoAdd;
 							
 							if (totalCost<=player.getDoubloons()) {
@@ -303,8 +305,9 @@ public class PortMenu extends ship
 						}				break;
 					
 					case 2:
+						//Ammo is not being implemented
 						int ammoSellPrice=6;
-						int ammo=getAmmo();
+					//	int ammo=getAmmo();
 						System.out.println("Now you have doubloons: "+player.getDoubloons()+". Each ammo you sold will gain "+ammoSellPrice+" doubloons");
 						
 						System.out.println("Now you have ammo: "+ammo);
@@ -324,7 +327,7 @@ public class PortMenu extends ship
 						player.setDoubloons(totalEarn+player.getDoubloons());
 						System.out.println(ammoRemove+" ammo has been sold");
 						System.out.println("Now you have ammo: "+newammo+" Remaining doubllons: "+player.getDoubloons());
-						setAmmo(newammo);	
+						//setAmmo(newammo);	
 						break;
 						}} if(sellYesNo4==false) {
 							System.out.println("Returned to store main menu");

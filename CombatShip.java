@@ -95,6 +95,57 @@ public class CombatShip {
 		
 		
 	}
+	public  void makeBrigatine(){
+		ehull=30;
+		maxEhull=ehull;
+		
+		esails=12;
+		maxEsails=esails;
+		esailsToughness=2;
+		
+		ecrew=13;
+		maxEcrew=ecrew;
+		
+		ecannons=9;
+		maxEcannons=ecannons;
+		edescription="A heavy cargo vessel capable of traveling to far away lands. It carries expensive spieces and gold ";
+		
+		
+	}
+	public  void makeGalleon(){
+		ehull=35;
+		maxEhull=ehull;
+		
+		esails=8;
+		maxEsails=esails;
+		esailsToughness=3;
+		
+		ecrew=30;
+		maxEcrew=ecrew;
+		
+		ecannons=12;
+		maxEcannons=ecannons;
+		edescription="A bulky ship laden with supplies and spices from exotic locals.";
+		
+		
+	}
+	public  void makeTreasureGalleon(){
+		ehull=60;
+		maxEhull=ehull;
+		
+		esails=6;
+		maxEsails=esails;
+		esailsToughness=4;
+		
+		ecrew=40;
+		maxEcrew=ecrew;
+		
+		ecannons=22;
+		maxEcannons=ecannons;
+		edescription="A massive vessel filled with gold and silver destined for far off Spain. It is very well defended";
+		
+		
+	}
 }
 
 

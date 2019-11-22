@@ -49,8 +49,13 @@ public class MainMenu
 						player.setDoubloons(500);
 						
 					//	System.out.println(player.getSwordSkill());
-						ship playerShip= new ship();
+						//ship playerShip= new ship();
 					//	player.shipNewGame();
+						//ship.
+						DifferentShips.Caravel();
+						ship.shipDetails();
+						System.out.println();
+						Utilities.promptEnterKey();
 						
 						//System.out.println(playerShip.getCannon());
 						PortMenu mainPort=new PortMenu();
@@ -110,5 +115,5 @@ public class MainMenu
 		e.printStackTrace();
 	}	
 	}
-
+	
 }
