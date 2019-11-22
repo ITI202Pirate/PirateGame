@@ -1,5 +1,6 @@
 package pirateGame;
 
+
 import java.util.Arrays;
 import java.util.Scanner;
 import java.util.stream.Collectors;
@@ -46,7 +47,8 @@ public class MapTester {
 		      MapTester board = new MapTester(width, height);
 
 		      // we display initial board
-		      System.out.println(board);
+		      //System.out.println(board);
+		    System.out.println(  board.toString());
 
 		      // we iterate until max nb moves be reached
 		      // simple trick to change player turn at each iteration

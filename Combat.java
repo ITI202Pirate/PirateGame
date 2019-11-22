@@ -25,6 +25,7 @@ public class Combat extends ship {
 	
 	
 	public Combat(String enemy) {
+		Player player=new Player();
 		//getCrew();
 		crew=getCrew();
 		sails=getSail();
@@ -51,12 +52,12 @@ public class Combat extends ship {
 		
 		distance=startingDistance;//Set the current distance between player and enemy ship
 		
-		System.out.println("Testing, Player Crew: "+ crew+" Sails: "+ sails+" Hull:"+hull+" Cannon:"+cannons+" Enemy Type:"+enemy);
-		System.out.println("Testing, Enemy Crew: "+ enemyShip.getEcrew()+" Sails: "+ enemyShip.getEsails()+" Hull:"+enemyShip.getEhull()+" Cannon:"+enemyShip.getEcannons()+" Enemy Type:"+enemy);
+		//System.out.println("Testing, Player Crew: "+ crew+" Sails: "+ sails+" Hull:"+hull+" Cannon:"+cannons+" Enemy Type:"+enemy);
+		//System.out.println("Testing, Enemy Crew: "+ enemyShip.getEcrew()+" Sails: "+ enemyShip.getEsails()+" Hull:"+enemyShip.getEhull()+" Cannon:"+enemyShip.getEcannons()+" Enemy Type:"+enemy);
 		
 		
 		//Combat Description for player Below
-		System.out.println("");
+		System.out.println("Ship Ahoy Captain: "+player.getName()+" !");
 		System.out.println("You Encounter a "+enemy+" On the High Seas");
 		System.out.println("A "+ enemy+" is "+ enemyShip.getEdescription());
 		System.out.println();
@@ -164,6 +165,7 @@ public class Combat extends ship {
 		int hits=0;
 		int check;
 		int count=0;
+		
 		//int probablility;
 		System.out.println("Your ship turns to fire a broadside at the enemy");
 		
@@ -212,6 +214,7 @@ public class Combat extends ship {
 				return true;
 			}
 			
+			
 		enemyShipAction();
 		return false;
 	}
@@ -221,7 +224,14 @@ public class Combat extends ship {
 	    return x;
 	}
 	
-	public void enemyShipAction() {
+	public void enemyShipAction() {//Controls enemy ship attacks, maybe AI if I have time to make decision tree
+		EnemyAttacks a=new NavalAttacks();
+	int hits=	a.cannonAttack(enemyShip);
+		System.out.println("Your ship takes " +hits+" hits");
+		
+		
+		
+		
 		
 	}
 	public boolean checkIfWin() {
