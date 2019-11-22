@@ -1,119 +1,136 @@
-
-public class DifferentShips {
+package pirateGame;
+public class DifferentShips extends ship {
 
 	public static void Caravel() {
-		ship caravel = new ship();
-		caravel.setWater(10);
-		caravel.setWaterMax(20);
+		//ship caravel = new ship();
+		shipType="Caravel";
+		shipDescription="A light commercial vessel fit for general purpose cargo.";
+		setWater(10);
+		setWaterMax(20);
 		
-		caravel.setFood(10);
-		caravel.setFoodMax(20);
+		setFood(10);
+		setFoodMax(20);
 		
-		caravel.setAmmo(10);
-		caravel.setAmmoMax(20);
+		//setAmmo(10);
+		//setAmmoMax(20);
 		
-		caravel.setCannon(5);
-		caravel.setCannonMax(10);
+		setCannon(5);
+		setCannonMax(10);
 		
-		caravel.setCrew(10);
-		caravel.setCrewMax(20);
+		setCrew(10);
+		setCrewMax(20);
 		
-		caravel.setHull(10);
-		caravel.setSail(10);
+		setHull(10);
+		hullMax=10;
+		setSail(25);
+		sailsMax=25;
 		
-		caravel.setSailToughness(1);
+		setSailToughness(1);
 	}
 	
 	public static void DutchClipper() {
-		ship clipper = new ship();
-		clipper.setWater(20);
-		clipper.setWaterMax(40);
 		
-		clipper.setFood(20);
-		clipper.setFoodMax(40);
+		shipType="Dutch Clipper";
+		shipDescription="A fast but spacious ship capable of sailing into the wind.";
+		//ship clipper = new ship();
+		setWater(20);
+		setWaterMax(40);
 		
-		clipper.setAmmo(20);
-		clipper.setAmmoMax(40);
+		setFood(20);
+		setFoodMax(40);
 		
-		clipper.setCannon(10);
-		clipper.setCannonMax(20);
+		//setAmmo(20);
+		//setAmmoMax(40);
 		
-		clipper.setCrew(20);
-		clipper.setCrewMax(40);
+		setCannon(10);
+		setCannonMax(20);
 		
-		clipper.setHull(20);
-		clipper.setSail(20);
+		setCrew(20);
+		setCrewMax(40);
 		
-		clipper.setSailToughness(2);
+		setHull(20);
+		hullMax=20;
+		setSail(45);
+		sailsMax=45;
+		setSailToughness(2);
 	}
 	
 	public static void Galleon() {
-		ship galleon = new ship();
-		galleon.setWater(30);
-		galleon.setWaterMax(60);
+		shipType="Galleon";
+		shipDescription="A sturdy ocean going vessel fit for carrying heavy goods and treasure.";
+		//ship galleon = new ship();
+		setWater(30);
+		setWaterMax(60);
 		
-		galleon.setFood(30);
-		galleon.setFoodMax(60);
+		setFood(30);
+		setFoodMax(60);
 		
-		galleon.setAmmo(30);
-		galleon.setAmmoMax(60);
+		//setAmmo(30);
+		//setAmmoMax(60);
 		
-		galleon.setCannon(15);
-		galleon.setCannonMax(30);
+		setCannon(15);
+		setCannonMax(30);
 		
-		galleon.setCrew(30);
-		galleon.setCrewMax(60);
+		setCrew(30);
+		setCrewMax(60);
 		
-		galleon.setHull(30);
-		galleon.setSail(30);
-		
-		galleon.setSailToughness(3);
+		setHull(30);
+		hullMax=30;
+		setSail(20);
+		sailsMax=20;
+		setSailToughness(3);
 	}
 	
 	public static void Brig() {
-		ship brig = new ship();
-		brig.setWater(40);
-		brig.setWaterMax(80);
+		shipType="Brig";
+		shipDescription="A medium sized commercial vessel fit for general purpose cargo with a decent armament.";
+		//ship brig = new ship();
+		setWater(40);
+		setWaterMax(80);
 		
-		brig.setFood(40);
-		brig.setFoodMax(80);
+		setFood(40);
+		setFoodMax(80);
 		
-		brig.setAmmo(40);
-		brig.setAmmoMax(80);
+		//setAmmo(40);
+		//setAmmoMax(80);
 		
-		brig.setCannon(20);
-		brig.setCannonMax(40);
+		setCannon(20);
+		setCannonMax(40);
 		
-		brig.setCrew(40);
-		brig.setCrewMax(80);
+		setCrew(40);
+		setCrewMax(80);
 		
-		brig.setHull(40);
-		brig.setSail(40);
-		
-		brig.setSailToughness(4);
+		setHull(40);
+		hullMax=40;
+		setSail(30);
+		sailsMax=30;
+		setSailToughness(4);
 	}
 
-	public static void Battleship() {
-		ship battleship = new ship();
-		battleship.setWater(50);
-		battleship.setWaterMax(100);
+	public static void ShipOfTheLine() {
+		shipType="Ship of the Line";
+		shipDescription="A powerful battleship bristling with cannon and many sails.";
+	//	ship ShipOfTheLine = new ship();
+		setWater(50);
+		setWaterMax(100);
 		
-		battleship.setFood(50);
-		battleship.setFoodMax(100);
+		setFood(50);
+		setFoodMax(100);
 		
-		battleship.setAmmo(50);
-		battleship.setAmmoMax(100);
+		//setAmmo(50);
+		//setAmmoMax(100);
 		
-		battleship.setCannon(25);
-		battleship.setCannonMax(50);
+		setCannon(25);
+		setCannonMax(50);
 		
-		battleship.setCrew(50);
-		battleship.setCrewMax(100);
+		setCrew(50);
+		setCrewMax(100);
 		
-		battleship.setHull(50);
-		battleship.setSail(50);
-		
-		battleship.setSailToughness(5);
+		setHull(50);
+		hullMax=50;
+		setSail(40);
+		sailsMax=40;
+		setSailToughness(5);
 	}
 	//       Small ships have a sailToughness of 1
 	//Medium ships 2 and large ships 3
@@ -127,6 +144,5 @@ You might want to make it into another class
 that ship extends
 Just 3 types
 or more if you have time
-
 	 */
 }
