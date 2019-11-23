@@ -4,12 +4,14 @@ import java.util.Scanner;
 
 public class Combat extends ship {
 	private final double standardAccuracy= 6;//All cannons have 60% accuracy by default, this number is X/10
-	private  int startingDistance= 30;//Starting distance between the two ships.
-	private int escape=70;//Distance at which ships escape battle
+	private  int startingDistance= 50;//Starting distance between the two ships.
+	private int escape=90;//Distance at which ships escape battle
 	private int distance;//Current distance between ships
 	private CombatShip enemyShip=new CombatShip();
 	private boolean victory=false;//True if you win false if not.
 	Scanner scan=new Scanner(System.in);
+	
+	private int looting;
 	
 	private int crew;
 	private int sails;
@@ -25,6 +27,7 @@ public class Combat extends ship {
 	
 	
 	public Combat(String enemy) {
+		Player player=new Player();
 		//getCrew();
 		crew=getCrew();
 		sails=getSail();
@@ -37,44 +40,64 @@ public class Combat extends ship {
 		
 		switch(enemy) {// Enemy selection based on enemy String. 
 		case "Cutter":
-			
+			looting=1;
 			enemyShip.makeCutter();
 		break;
 		case "Brig":
 			//enemyShip enemyShipBrig=new enemyShip();
+			looting=2;
 			enemyShip.makeBrig();
 			break;
-		
+		case "Brigatine":
+			//enemyShip enemyShipBrig=new enemyShip();
+			looting=3;
+			enemyShip.makeBrigatine();
+			break;
+		case "Galleon":
+			//enemyShip enemyShipBrig=new enemyShip();
+			looting=4;
+			enemyShip.makeGalleon();
+			break;
+		case "TreasureGalleon":
+			//enemyShip enemyShipBrig=new enemyShip();
+			looting=5;
+			enemyShip.makeTreasureGalleon();
+			break;
 		default :
 			throw new IllegalArgumentException("Invalid Enemy Type: " + enemy);
 		}
 		
 		distance=startingDistance;//Set the current distance between player and enemy ship
 		
-		System.out.println("Testing, Player Crew: "+ crew+" Sails: "+ sails+" Hull:"+hull+" Cannon:"+cannons+" Enemy Type:"+enemy);
-		System.out.println("Testing, Enemy Crew: "+ enemyShip.getEcrew()+" Sails: "+ enemyShip.getEsails()+" Hull:"+enemyShip.getEhull()+" Cannon:"+enemyShip.getEcannons()+" Enemy Type:"+enemy);
+		//System.out.println("Testing, Player Crew: "+ crew+" Sails: "+ sails+" Hull:"+hull+" Cannon:"+cannons+" Enemy Type:"+enemy);
+		//System.out.println("Testing, Enemy Crew: "+ enemyShip.getEcrew()+" Sails: "+ enemyShip.getEsails()+" Hull:"+enemyShip.getEhull()+" Cannon:"+enemyShip.getEcannons()+" Enemy Type:"+enemy);
 		
 		
 		//Combat Description for player Below
-		System.out.println("");
+		System.out.println("Ship Ahoy Captain: "+player.getName()+" !");
 		System.out.println("You Encounter a "+enemy+" On the High Seas");
 		System.out.println("A "+ enemy+" is "+ enemyShip.getEdescription());
 		System.out.println();
+		Utilities.promptEnterKey();
 		//Primary Combat Loop
 		do {
 			
 			
 			if(hull<=0) {//Check if player is sunk due to loss of hull
 				System.out.println("Your Ship has been sunk");
-				System.out.println("Exiting");
+				System.out.println("Game Over");
+				Utilities.promptEnterKey();
+				returnShip();
 				//Insert code for handling ship sinking here.
 				run=false;
 				break;
 			}
 			if(crew<=0) {//Check if player is sunk due to loss of crew
 				System.out.println("Your crew has been slaughtered");
-				System.out.println("Exiting");
+				System.out.println("Game Over");
+				Utilities.promptEnterKey();
 				//Insert code for handling ship sinking here.
+				returnShip();
 				run=false;
 				break;
 			}
@@ -96,11 +119,15 @@ public class Combat extends ship {
 			
 			//System.out.println(combatOptions());
 			String option=combatOptions();
+			
 			switch(option) {// Enemy selection based on enemy String. 
 			case "F":
 				playerFireCannons(cannons);
 				if(checkIfWin()) {
 					System.out.println("You Win");
+					Loot looted=new Loot();
+					looted.dropLoot(looting);
+					Utilities.promptEnterKey();
 					victory=true;
 					run=false;
 					break;
@@ -108,6 +135,15 @@ public class Combat extends ship {
 				break;
 			case "C":
 				playerCloseDistance();
+				if(checkIfWin()) {
+					System.out.println("You Win");
+					Loot looted=new Loot();
+					looted.dropLoot(looting);
+					Utilities.promptEnterKey();
+					victory=true;
+					run=false;
+					break;
+				}
 				break;
 			case "R":
 				boolean leave=playerRunAway();
@@ -119,6 +155,7 @@ public class Combat extends ship {
 			default :
 				throw new IllegalArgumentException("Invalid Option: " + option);
 			}
+			
 		
 		//	run=false;
 			
@@ -146,11 +183,13 @@ public class Combat extends ship {
 		option=scan.next();
 		
 		
-		if (option.length()==1) {
-			break;
-		}else if(!option.contains("F")&&!option.contains("C")&&!option.contains("R")) {
+		if (!(option.contains("F")||option.contains("C")||option.contains("R"))) {
+			
 			System.out.println("Enter only 1 letter from the above options, Try again");
 			
+		}else if(option.length()==1) {
+			
+			break;
 		}else {
 			System.out.println("Enter only 1 letter, Try again");
 			
@@ -164,13 +203,14 @@ public class Combat extends ship {
 		int hits=0;
 		int check;
 		int count=0;
+		
 		//int probablility;
 		System.out.println("Your ship turns to fire a broadside at the enemy");
 		
 		while(count<=cannons) {
 			count++;
 			
-			check =(int) getRandomIntegerBetweenRange(1,10);
+			check =Utilities.getRandomIntegerBetweenRange(1,10);
 			if(check<=6) {
 				hits++;
 				
@@ -193,13 +233,27 @@ public class Combat extends ship {
 		if( distance<=sails) {//if distance is less than the spaces a player would move, set to zero and go to boarding mode
 			distance=0;
 			System.out.println(" You ram the enemy ship! Prepare to board!");
+			Utilities.promptEnterKey();
+			System.out.println("Your men charge over the railing and viciously attack the enemy.");
+			Utilities.promptEnterKey();
+			int death=Utilities.getRandomIntegerBetweenRange(1, crew);
+			crew=crew-death;
+			System.out.println("In the fighting you slay "+(Math.min(enemyShip.getEcrew(),Player.SwordSkill))+" of the enemy");
+			System.out.println(death+" Memebers of your crew in fall battle");
+			enemyShip.setEcrew(0);
+			
+			Utilities.promptEnterKey();
+			//Player.SwordSkill
 			//Boarding class coding here.
-		}
+		}else {
+			
+		
 		distance=distance-sails;
 		System.out.println("You move: "+sails+" units closer, you are now "+distance +" away from the enemy ship");
 		
 		
 		enemyShipAction();
+		}
 	}
 	
 	public boolean playerRunAway() {
@@ -212,16 +266,40 @@ public class Combat extends ship {
 				return true;
 			}
 			
+			
 		enemyShipAction();
 		return false;
 	}
-	public static double getRandomIntegerBetweenRange(double min, double max){
+	/*public static double getRandomIntegerBetweenRange(double min, double max){
 		//enter min and max values, so 5,10 means you get something between 5-10.
 	    double x = (int)(Math.random()*((max-min)+1))+min;
 	    return x;
 	}
-	
-	public void enemyShipAction() {
+	*/
+	public void enemyShipAction() {//Controls enemy ship attacks, maybe AI if I have time to make decision tree
+		Attacks a=new NavalAttacks();
+		int rand=Utilities.getRandomIntegerBetweenRange(1, 10);
+		if(distance>40||rand<3) {
+	int hits=	a.cannonAttack(enemyShip);
+		
+		hull=hull-hits;
+		System.out.println("Remaining Hull:"+hull);
+		}else if(distance<=40&&distance>20&&rand>=3) {
+			int hits=a.chainshotAttack(enemyShip);
+			
+			sails=sails-hits;
+			System.out.println("Remaining Sails:"+sails);
+		}else if(distance<=20&&rand>=3) {
+			int hits=a.grapeshotAttack(enemyShip);
+			
+			crew=crew-hits;
+			System.out.println("Remaining crew:"+crew);
+		}else {
+			System.out.println(" The enemy attempts to bring its guns to bear, but cannot target your ship");
+		}
+		
+		Utilities.promptEnterKey();
+		
 		
 	}
 	public boolean checkIfWin() {
@@ -266,6 +344,15 @@ public class Combat extends ship {
 		
 		
 	}
+	public void returnShip() {
+		setHull(this.hull);
+		setSail(this.sails);
+		setCrew(this.crew);
+	//	setCannons();
+	}
+	/*public void looting() {
+		//if(enemy.)
+	}*/
 /*	public boolean checkIfLose() {
 		if(hull<=0) {//Check if player is sunk due to loss of hull
 			System.out.println("Your Ship has been sunk");

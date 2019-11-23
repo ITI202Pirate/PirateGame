@@ -4,6 +4,7 @@ import java.util.InputMismatchException;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
+
 public class PortMenu extends ship 
 {
 
@@ -23,6 +24,7 @@ public class PortMenu extends ship
 			System.out.println("[1] - Store");
 			System.out.println("[2] - Shipyard");
 			System.out.println("[3] - Leave Port");
+			System.out.println("[4] - Quit Game");
 			System.out.println("-------------------------");
 			System.out.println("");
 			System.out.println("Type in the number for which command you would like to execute");
@@ -51,12 +53,33 @@ public class PortMenu extends ship
 				case 3:
 					System.out.println("Exiting the port...");
 					
-					Combat d1=new Combat("Cutter");
-					System.out.println("End Combat");
+					Sailing sail=new Sailing();
+					//System.out.println("End Combat");
 					//insert exploration options
 				break;
+				case 4:
+					
+					System.out.println("Are you sure you want to exit? (y/n)");
+					Scanner inputExit = new Scanner(System.in);
+					String exitRead = inputExit.nextLine();
 				
+					if(exitRead.equals("y"))
+					{
+						System.out.println("Thanks for playing!");
+						System.exit(0);
+					}
 				
+					else if(exitRead.equals("n"))
+					{
+						portRead = 100;
+					}
+				
+					else
+					{
+						System.out.println("Invalid Input, Returning to game");
+						
+					}
+				break;
 				default:
 					System.out.println("Default That is an invalid input.");
 				break;	
@@ -115,7 +138,7 @@ public class PortMenu extends ship
 					//buy
 				{									
 					System.out.println("You are selecitng to buy,please enter item id");					
-					System.out.println("1.food\n2.ammo\n3.water\n4.cannon");
+					System.out.println("1.food\n2.water\n3.cannon");
 						Scanner buyOption=new Scanner(System.in);
 						int buyRead=buyOption.nextInt();											 
 						
@@ -156,43 +179,9 @@ public class PortMenu extends ship
 							}
 							break;							
 						
-						
 							
+						
 						case 2:
-							int ammoPrice=10;
-							System.out.println("Now you have "+player.getDoubloons()+ " doubloons, each ammo will cost "+ammoPrice+ " doubloons");
-							System.out.println("Do you want to buy ammo? true/false");
-							
-							boolean buyYesNo4=buyOption.nextBoolean();
-							
-							while (player.getDoubloons()>ammoPrice) {
-							if (buyYesNo4==true) {		
-							
-							System.out.println("Enter quantity: ");  
-							int ammo=getAmmo();
-							int ammoAdd=buyOption.nextInt();													
-							int newammo=ammoAdd+ammo;
-							setAmmo(newammo);
-							int totalCost=ammoPrice*ammoAdd;
-							
-							if (totalCost<=player.getDoubloons()) {
-							System.out.println(ammoAdd+" ammo added in your bag");
-							System.out.println("Now you have ammo: "+newammo+" Remaining doubloons: "+(player.getDoubloons()-totalCost));
-							player.setDoubloons(player.getDoubloons()-totalCost);
-							}else {
-								System.out.println("You don't have enough money, returned to store main menu");
-								break;
-							}
-							
-							}else if(buyYesNo4==false) {
-								System.out.println("Returned to store main menu");
-								break;
-							}break;	
-							
-							}						
-							break;		
-						
-						case 3:
 							int waterPrice=10;
 							
 							System.out.println("Now you have "+player.getDoubloons()+ " doubloons, each water will cost "+waterPrice+ " doubloons");
@@ -226,7 +215,7 @@ public class PortMenu extends ship
 							}						
 							break;		
 						
-						case 4:
+						case 3:
 							int cannonPrice=10;
 							
 							System.out.println("Now you have "+player.getDoubloons()+ " doubloons, each cannon will cost "+cannonPrice+ " doubloons");
@@ -267,7 +256,7 @@ public class PortMenu extends ship
 				case 2:
 				{
 					System.out.println("You are selecting to sell, please enter item id: ");
-					System.out.println("1.food\n2.ammo\n3.water\n4.cannon");
+					System.out.println("1.food\n2.water\n4.cannon");
 					Scanner sellOption=new Scanner(System.in);
 					int sellRead=sellOption.nextInt();
 				
@@ -294,46 +283,17 @@ public class PortMenu extends ship
 						int totalEarn=foodSellPrice*foodRemove;
 						player.setDoubloons(totalEarn+player.getDoubloons());
 						System.out.println(foodRemove+" food has been sold");
-						System.out.println("Now you have food: "+newFood+" Remaining doubllons: "+player.getDoubloons());
+						System.out.println("Now you have food: "+newFood+" Remaining doubloons: "+player.getDoubloons());
 						setFood(newFood);	
 						break;
 						}} if(sellYesNo==false) {
 							System.out.println("Returned to store main menu");
 							break;
 						}				break;
+												
+					
 					
 					case 2:
-						int ammoSellPrice=6;
-						int ammo=getAmmo();
-						System.out.println("Now you have doubloons: "+player.getDoubloons()+". Each ammo you sold will gain "+ammoSellPrice+" doubloons");
-						
-						System.out.println("Now you have ammo: "+ammo);
-						System.out.println("Do you want to sell ammo? true/false");
-						boolean sellYesNo4=sellOption.nextBoolean();
-						while (sellYesNo4==true) {
-							
-							
-							System.out.println("The quantity of ammo you want to sell, please enter: ");
-							int ammoRemove=sellOption.nextInt();
-						if(ammoRemove>ammo) {
-							System.out.println("It seems that you don't have so much ammo on your bag. Please re-enter it");							
-						}else {
-																												
-						int newammo=ammo-ammoRemove;
-						int totalEarn=ammoSellPrice*ammoRemove;
-						player.setDoubloons(totalEarn+player.getDoubloons());
-						System.out.println(ammoRemove+" ammo has been sold");
-						System.out.println("Now you have ammo: "+newammo+" Remaining doubllons: "+player.getDoubloons());
-						setAmmo(newammo);	
-						break;
-						}} if(sellYesNo4==false) {
-							System.out.println("Returned to store main menu");
-							break;
-						}				
-						break;							
-					
-					
-					case 3:
 						int waterSellPrice=6;
 						int water=getWater();
 						System.out.println("Now you have doubloons: "+player.getDoubloons()+". Each water you sold will gain "+waterSellPrice+" doubloons");
@@ -364,7 +324,7 @@ public class PortMenu extends ship
 						}			
 						break;	
 						
-					case 4:
+					case 3:
 						int cannonSellPrice=6;
 						int cannon=getCannon();
 						System.out.println("Now you have doubloons: "+player.getDoubloons()+". Each cannon you sold will gain "+cannonSellPrice+" doubloons");
@@ -386,7 +346,7 @@ public class PortMenu extends ship
 						player.setDoubloons(totalEarn+player.getDoubloons());
 						
 						System.out.println(cannonRemove+" cannon has been sold");
-						System.out.println("Now you have cannon: "+newcannon+" Remaining doubllons: "+player.getDoubloons());
+						System.out.println("Now you have cannon: "+newcannon+" Remaining doubloons: "+player.getDoubloons());
 						setCannon(newcannon);	
 						break;
 						}} if(sellYesNo6==false) {
@@ -441,7 +401,8 @@ public class PortMenu extends ship
 			System.out.println("[1] - Repair Hull");
 			System.out.println("[2] - Repair Sail");
 			System.out.println("[3] - Recruit Crewmembers");
-			System.out.println("[4] - Leave");
+			System.out.println("[4] - Buy a ship");
+			System.out.println("[5] - Leave");
 			System.out.println("-------------------------");
 			System.out.println("");
 			System.out.println("Type in the number for which command you would like to execute");
@@ -455,6 +416,7 @@ public class PortMenu extends ship
 				{
 					case 1:
 						//repair, asks how much, returns price, asks y/n
+						System.out.println("Your hull is at " + getHull());
 						System.out.println("Would you like to repair your hull? true/false");
 						
 						Scanner repairInput=new Scanner(System.in);
@@ -462,15 +424,15 @@ public class PortMenu extends ship
 						
 						if(repairHullRead == true)
 						{
-							System.out.println("It will cost 10 doubloons"); 
+							System.out.println("It will cost 200 doubloons to repair 5 point"); 
 							System.out.println("You have " + player.getDoubloons() + " doubloons");
 							System.out.println("Would you like to proceed? true/false");
 							boolean buyHullRead=repairInput.nextBoolean();	
 							
 							if(buyHullRead == true)
 							{
-								int hullAmount = 10; //cost
-								int hullRepair = 1; //units repaired
+								int hullAmount = 200; //cost
+								int hullRepair = 5; //units repaired
 								
 								//take away gold 
 								if(player.getDoubloons() < hullAmount)
@@ -483,7 +445,8 @@ public class PortMenu extends ship
 								{
 								player.setDoubloons(player.getDoubloons() - hullAmount);	
 								setHull(getHull() + hullRepair); //insert max value
-								System.out.println("Your ship has been repaired");
+								System.out.println("Your hull is now at " + getHull());
+								System.out.println("You have " + player.getDoubloons() + " doubloons");
 								}
 							}
 						}
@@ -493,6 +456,7 @@ public class PortMenu extends ship
 
 					case 2:
 						//repair, asks how much, returns price, asks y/n
+						System.out.println("Your sail is at " + getSail());
 						System.out.println("Would you like to repair your sail? true/false");
 						
 						Scanner repairSailInput=new Scanner(System.in);
@@ -500,15 +464,15 @@ public class PortMenu extends ship
 						
 						if(repairSailRead == true)
 						{
-							System.out.println("It will cost 10 doubloons"); 
+							System.out.println("It will cost 100 doubloons to repair 5 units"); 
 							System.out.println("You have " + player.getDoubloons() + " doubloons");
 							System.out.println("Would you like to proceed? true/false");
 							boolean buySailRead=repairSailInput.nextBoolean();	
 							
 							if(buySailRead == true)
 							{
-								int sailAmount = 10; //cost
-								int sailRepair = 1; //units repaired
+								int sailAmount = 100; //cost
+								int sailRepair = 5; //units repaired
 								
 								//take away gold 
 								if(player.getDoubloons() < sailAmount)
@@ -521,7 +485,8 @@ public class PortMenu extends ship
 								{
 								player.setDoubloons(player.getDoubloons() - sailAmount);	
 								setSail(getSail() + sailRepair); //insert max value
-								System.out.println("Your sail has been repaired");
+								System.out.println("Your sail is now at " + getSail());
+								System.out.println("You have " + player.getDoubloons() + " doubloons");
 								}
 							}
 						}
@@ -532,36 +497,57 @@ public class PortMenu extends ship
 					
 					case 3:
 						//recruit, asks how many, returns price, asks y/n
+						System.out.println("Your crew is at " + getCrew() + " out of " + getCrewMax());
 						System.out.println("Would you like to recruit members? true/false");
 						
 						Scanner crewInput=new Scanner(System.in);
 						boolean crewRead=crewInput.nextBoolean();	
+						int crewPrice = 10; //cost
+						
+
 						
 						if(crewRead == true)
 						{
-							System.out.println("It will cost 10 doubloons"); 
+							System.out.println("It will cost 10 doubloons for 1 person"); 
 							System.out.println("You have " + player.getDoubloons() + " doubloons");
+							System.out.println("How many people will you recruit?"); 
+							int amountCrewRead = crewInput.nextInt();
+							System.out.println("It will cost " + amountCrewRead*crewPrice + " doubloons");
 							System.out.println("Would you like to proceed? true/false");
 							boolean buyCrewRead=crewInput.nextBoolean();	
 							
+							int crewTotalPrice = amountCrewRead*crewPrice;
+							
 							if(buyCrewRead == true)
 							{
-								int crewAmount = 10; //cost
-								int crewRecruit = 1; //units recruit
+								
 								//take away gold 
 								//insufficient gold should not allow purchase
-								if(player.getDoubloons() < crewAmount)
+								if(getCrew() > getCrewMax() || (amountCrewRead + getCrew()) > getCrewMax())
 								{
-									System.out.println("You have insufficient funds");
-									System.out.println("Your crew was not replenished");
+									
+									System.out.println("Your crew is at max capacity or you are buying too many crew");
+									
+						
+								
 								}
-								//insufficient gold should not allow purchase
+								
 								else
 								{
-								player.setDoubloons(player.getDoubloons() - crewAmount);	
-								setCrew(getCrew() + crewRecruit); 
-								System.out.println("Your crew has been replenished");
-								
+									if(player.getDoubloons() < crewTotalPrice)
+									{
+										System.out.println("You have insufficient funds");
+										System.out.println("Your crew was not replenished");
+									}
+									//insufficient gold should not allow purchase
+									else
+									{
+									player.setDoubloons(player.getDoubloons() - crewTotalPrice);	
+									setCrew(getCrew() + amountCrewRead); 
+									System.out.println("Your crew is now at " + getCrew() + " out of " + getCrewMax());
+									System.out.println("You have " + player.getDoubloons() + " doubloons");
+									
+									}
 								}
 								
 								
@@ -569,12 +555,98 @@ public class PortMenu extends ship
 						}
 					break;
 					
-					
-					
-
-
 					case 4:
+						System.out.println("Would you like a new ship? true/false");
+						Scanner shipInput=new Scanner(System.in);
+						boolean shipRead=shipInput.nextBoolean();	
+						int DutchClipper= 1000;
+						int Galleon=2000;
+						int Brig=3000;
+						int ShipOfTheLine=5000;
+						if (shipRead==true) {	
+																									
+						System.out.println("Which ship you want to Buy");
+						System.out.println("1.Dutch Clipper, 1000\n2.Galleon, 2000\n3.Brig, 3000\n4.Ship Of The Line, 5000");
+							int shipOption=shipInput.nextInt();
+							switch (shipOption) {
+							
+							case 1:
+								System.out.println("You are buying Dutch Clipper, which will cost you 1000, would you want to buy? true/false");
+								boolean tf=shipInput.nextBoolean();
+								if (tf=true) {
+									if (player.getDoubloons()>=DutchClipper) {
+										
+										System.out.println("Now you have Dutch Clipper");
+										player.setDoubloons(player.getDoubloons()-DutchClipper);
+										DifferentShips.DutchClipper();
+									}else if(player.getDoubloons()<DutchClipper) {
+										System.out.println("You don't have enough doubloons, now returned to shipyard");
+										break;
+									}}else {
+										System.out.println("Now returned to store menu");
+										break;
+									}
+							break;
+							case 2:
+								System.out.println("You are buying Galleon, which will cost you 1000, would you want to buy? true/false");
+								boolean tf2=shipInput.nextBoolean();
+								if (tf=true) {
+									if (player.getDoubloons()>=Galleon) {
+										
+										System.out.println("Now you have Galleon");
+										player.setDoubloons(player.getDoubloons()-Galleon);
+										DifferentShips.Galleon();
+									}else if(player.getDoubloons()<Galleon) {
+										System.out.println("You don't have enough doubloons, now returned to shipyard");
+										break;
+									}}else {
+										System.out.println("Now returned to store menu");
+										break;
+									}
+								break;
+							case 3:
+								System.out.println("You are buying Brig, which will cost you 1000, would you want to buy? true/false");
+								boolean tf3=shipInput.nextBoolean();
+								if (tf3=true) {
+									if (player.getDoubloons()>=Brig) {
+										
+										System.out.println("Now you have Brig");
+										player.setDoubloons(player.getDoubloons()-Brig);
+										DifferentShips.Brig();
+									}else if(player.getDoubloons()<Brig) {
+										System.out.println("You don't have enough doubloons, now returned to shipyard");
+										break;
+									}}else {
+										System.out.println("Now returned to store menu");
+										break;
+									}
+								break;
+							case 4:
+								System.out.println("You are buying Ship Of The Line, which will cost you 1000, would you want to buy? true/false");
+								boolean tf4=shipInput.nextBoolean();
+								if (tf4=true) {
+									if (player.getDoubloons()>=ShipOfTheLine) {
+										
+										System.out.println("Now you have Ship Of The Line");
+										player.setDoubloons(player.getDoubloons()-ShipOfTheLine);
+										DifferentShips.ShipOfTheLine();
+									}else if(player.getDoubloons()<Brig) {
+										System.out.println("You don't have enough doubloons, now returned to shipyard");
+										break;
+									}}else {
+										System.out.println("Now returned to store menu");
+										break;
+									}
+							}		
+							
+				
+						break;							
+						}
+
+						break;
+					case 5:
 						System.out.println("Leaving the shipyard...");
+						yardRead=3;
 					break;
 				}
 			}

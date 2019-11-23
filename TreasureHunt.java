@@ -3,7 +3,7 @@ package pirateGame;
 import java.util.Random;
 import java.util.Scanner;
 
-public class TreasureHunt {
+public class TreasureHunt extends ship {
 	
 	private String treasure;
 	private int treasureCount;
@@ -18,7 +18,9 @@ public class TreasureHunt {
 		this.treasureCount = treasureCount;
 		this.value = value; 
 		this.foundGold = 0;
-		this.goldProb = 0.25; // hardcoded for now
+		this.goldProb = .55; // hardcoded for now
+		
+		int water=getWater();
 	}
 	/*
 	 * Begin searching for treasure on this land
