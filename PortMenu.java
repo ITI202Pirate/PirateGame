@@ -3,7 +3,6 @@ package pirateGame;
 import java.util.InputMismatchException;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
-
 public class PortMenu extends ship 
 {
 
@@ -50,9 +49,9 @@ public class PortMenu extends ship
 				
 				case 3:
 					System.out.println("Exiting the port...");
-					
-					Combat d1=new Combat("Cutter");
-					System.out.println("End Combat");
+					Sailing s1=new Sailing();
+				//	Combat d1=new Combat("Cutter");
+					//System.out.println("End Combat");
 					//insert exploration options
 				break;
 				

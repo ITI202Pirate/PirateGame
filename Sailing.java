@@ -6,7 +6,9 @@ import java.util.Scanner;
 
 public class Sailing extends ship {
 	
-	public void Sailing() {
+	//private int enterLand;
+
+	public Sailing() {
 		Player player=new Player();
 		Utilities.promptEnterKey();
 		
@@ -42,16 +44,40 @@ public class Sailing extends ship {
 						int search=Utilities.getRandomIntegerBetweenRange(1, 10);
 						if(search<=4) {//small ship
 							Combat s1=new Combat("Cutter");
+						
+							if(hull  <= 0 || crew <= 0 ) {
+								System.out.println("GAME OVER"); 
+								Utilities.promptEnterKey();
+								java.lang.System.exit(0);
+							}
+							
 							//loot system goes here
 							
 							
 							
 						}else if(5<=search&&search<=7) {//medium ship
 							Combat s1=new Combat("Brig");
+							if(hull  <= 0 || crew <= 0 ) {
+								System.out.println("GAME OVER"); 
+								Utilities.promptEnterKey();
+								java.lang.System.exit(0);
+							}
 						}else if(8<=search&&search<=9) {//large ship
-							Combat s1=new Combat("Cutter");
+							Combat s1=new Combat("Brigatine");
+							if(hull  <= 0 || crew <= 0 ) {
+								System.out.println("GAME OVER"); 
+								Utilities.promptEnterKey();
+								java.lang.System.exit(0);
+							}
 						}else {//massive ship
+							Combat s1=new Combat("TreasureGalleon");
 							
+							
+							if(hull  <= 0 || crew <= 0 ) {
+								System.out.println("GAME OVER"); 
+								Utilities.promptEnterKey();
+								java.lang.System.exit(0);
+							}
 						}
 						
 						
@@ -61,12 +87,25 @@ public class Sailing extends ship {
 					
 					case 2:
 						// Treasure hunt section, uses John's code
-					break;	
+					System.out.println("Lets begin the treasure hunt!.");
+					
+					TreasureHunt T = new TreasureHunt("Treasure", 5, 3 );
+					
+					int money=T.enterLand();
+					
+					//int newdoubloons = Player.setDoubloons();
+					player.setDoubloons(player.getDoubloons()+money);
+					
+					
+					
+					
+						break;	
 				
 					
 					case 3:
 					//Return to port
-						
+						System.out.println("You have chosen to return to Port"); 
+						PortMenu mainPort=new PortMenu();
 					break;
 					
 					

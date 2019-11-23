@@ -54,10 +54,10 @@ public class CombatShip {
 	 * 
 	 */
 	public  void display() {
-		System.out.println("Your Hull:"+ehull+"/"+maxEhull);
-		System.out.println("Your Sails:"+esails+"/"+maxEsails);
-		System.out.println("Your Crew:"+ecrew+"/"+maxEcrew);
-		System.out.println("Your Cannons:"+ecannons+"/"+maxEcannons);
+		System.out.println("Hull:"+ehull+"/"+maxEhull);
+		System.out.println("Sails:"+esails+"/"+maxEsails);
+		System.out.println("Crew:"+ecrew+"/"+maxEcrew);
+		System.out.println("Cannons:"+ecannons+"/"+maxEcannons);
 	//	System.out.println("Enemy Hull:"+ehull);
 	}
 	public  void makeCutter(){

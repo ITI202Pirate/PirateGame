@@ -1,10 +1,9 @@
 package pirateGame;
 
-public class NavalAttacks implements EnemyAttacks {
+public class NavalAttacks implements Attacks {
 	
-	@Override
-	public int cannonAttack(CombatShip enemy) {
-		System.out.println("The enemy ships fires cannonballs at you");
+	public int Attack(CombatShip enemy) {
+		System.out.println("The enemy ships fires cannons at you");
 	//	int hullDamage;
 		int hits=0;
 		int check;
@@ -17,7 +16,7 @@ public class NavalAttacks implements EnemyAttacks {
 			count++;
 			
 			check =(int) getRandomIntegerBetweenRange(1,10);
-			if(check<=6) {
+			if(check<=4) {
 				hits++;
 				
 			}
@@ -28,17 +27,39 @@ public class NavalAttacks implements EnemyAttacks {
 		// TODO Auto-generated method stub
 		return hits;
 	}
+	@Override
+	public int cannonAttack(CombatShip enemy) {
+		// TODO Auto-generated method stub
+		int hits=Attack(enemy);
+		System.out.println(""+hits+" Cannonball(s) strike your hull");
+		
+		
+		return hits;
+	}
 
 	@Override
 	public int grapeshotAttack(CombatShip enemy) {
+		
+		int hits=Attack(enemy);
+		System.out.println(""+hits+" Blast(s) of grapeshot strike down your crew");
+		
+		
+		return hits;
+		
+		
+		
+		
 		// TODO Auto-generated method stub
-		return 0;
+		
 	}
 
 	@Override
 	public int chainshotAttack(CombatShip enemy) {
-		// TODO Auto-generated method stub
-		return 0;
+		int hits=Attack(enemy);
+		System.out.println(""+hits+" Chained Cannonball(s) rips into your sails");
+		
+		
+		return hits;
 	}
 
 	@Override
@@ -57,6 +78,7 @@ public class NavalAttacks implements EnemyAttacks {
 	    double x = (int)(Math.random()*((max-min)+1))+min;
 	    return x;
 	}
+	
 	
 
 	

@@ -4,8 +4,8 @@ import java.util.Scanner;
 
 public class Combat extends ship {
 	private final double standardAccuracy= 6;//All cannons have 60% accuracy by default, this number is X/10
-	private  int startingDistance= 30;//Starting distance between the two ships.
-	private int escape=70;//Distance at which ships escape battle
+	private  int startingDistance= 50;//Starting distance between the two ships.
+	private int escape=90;//Distance at which ships escape battle
 	private int distance;//Current distance between ships
 	private CombatShip enemyShip=new CombatShip();
 	private boolean victory=false;//True if you win false if not.
@@ -79,15 +79,19 @@ public class Combat extends ship {
 			
 			if(hull<=0) {//Check if player is sunk due to loss of hull
 				System.out.println("Your Ship has been sunk");
-				System.out.println("Exiting");
+				System.out.println("Game Over");
+				Utilities.promptEnterKey();
+				returnShip();
 				//Insert code for handling ship sinking here.
 				run=false;
 				break;
 			}
 			if(crew<=0) {//Check if player is sunk due to loss of crew
 				System.out.println("Your crew has been slaughtered");
-				System.out.println("Exiting");
+				System.out.println("Game Over");
+				Utilities.promptEnterKey();
 				//Insert code for handling ship sinking here.
+				returnShip();
 				run=false;
 				break;
 			}
@@ -121,6 +125,12 @@ public class Combat extends ship {
 				break;
 			case "C":
 				playerCloseDistance();
+				if(checkIfWin()) {
+					System.out.println("You Win");
+					victory=true;
+					run=false;
+					break;
+				}
 				break;
 			case "R":
 				boolean leave=playerRunAway();
@@ -184,7 +194,7 @@ public class Combat extends ship {
 		while(count<=cannons) {
 			count++;
 			
-			check =(int) getRandomIntegerBetweenRange(1,10);
+			check =Utilities.getRandomIntegerBetweenRange(1,10);
 			if(check<=6) {
 				hits++;
 				
@@ -207,13 +217,27 @@ public class Combat extends ship {
 		if( distance<=sails) {//if distance is less than the spaces a player would move, set to zero and go to boarding mode
 			distance=0;
 			System.out.println(" You ram the enemy ship! Prepare to board!");
+			Utilities.promptEnterKey();
+			System.out.println("Your men charge over the railing and viciously attack the enemy.");
+			Utilities.promptEnterKey();
+			int death=Utilities.getRandomIntegerBetweenRange(1, crew);
+			crew=crew-death;
+			System.out.println("In the fighting you slay "+(Math.min(enemyShip.getEcrew(),Player.SwordSkill))+" of the enemy");
+			System.out.println(death+" Memebers of your crew in fall battle");
+			enemyShip.setEcrew(0);
+			
+			Utilities.promptEnterKey();
+			//Player.SwordSkill
 			//Boarding class coding here.
-		}
+		}else {
+			
+		
 		distance=distance-sails;
 		System.out.println("You move: "+sails+" units closer, you are now "+distance +" away from the enemy ship");
 		
 		
 		enemyShipAction();
+		}
 	}
 	
 	public boolean playerRunAway() {
@@ -230,19 +254,35 @@ public class Combat extends ship {
 		enemyShipAction();
 		return false;
 	}
-	public static double getRandomIntegerBetweenRange(double min, double max){
+	/*public static double getRandomIntegerBetweenRange(double min, double max){
 		//enter min and max values, so 5,10 means you get something between 5-10.
 	    double x = (int)(Math.random()*((max-min)+1))+min;
 	    return x;
 	}
-	
+	*/
 	public void enemyShipAction() {//Controls enemy ship attacks, maybe AI if I have time to make decision tree
-		EnemyAttacks a=new NavalAttacks();
+		Attacks a=new NavalAttacks();
+		int rand=Utilities.getRandomIntegerBetweenRange(1, 10);
+		if(distance>40||rand<3) {
 	int hits=	a.cannonAttack(enemyShip);
-		System.out.println("Your ship takes " +hits+" hits");
 		
+		hull=hull-hits;
+		System.out.println("Remaining Hull:"+hull);
+		}else if(distance<=40&&distance>20&&rand>=3) {
+			int hits=a.chainshotAttack(enemyShip);
+			
+			sails=sails-hits;
+			System.out.println("Remaining Sails:"+sails);
+		}else if(distance<=20&&rand>=3) {
+			int hits=a.grapeshotAttack(enemyShip);
+			
+			crew=crew-hits;
+			System.out.println("Remaining crew:"+crew);
+		}else {
+			System.out.println(" The enemy attempts to bring its guns to bear, but cannot target your ship");
+		}
 		
-		
+		Utilities.promptEnterKey();
 		
 		
 	}
@@ -287,6 +327,12 @@ public class Combat extends ship {
 		//description="A medium sized cargo vessel capable of traveling to far away lands. It can hold animals, colonists and valuable goods. ";
 		
 		
+	}
+	public void returnShip() {
+		setHull(this.hull);
+		setSail(this.sails);
+		setCrew(this.crew);
+	//	setCannons();
 	}
 /*	public boolean checkIfLose() {
 		if(hull<=0) {//Check if player is sunk due to loss of hull
